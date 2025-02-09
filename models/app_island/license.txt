@@ -1,0 +1,11 @@
+Model Information:
+* title:	App Island
+* source:	https://sketchfab.com/3d-models/app-island-2d22e05e4049493c9f47de897bb67c5e
+* author:	nickheitzman (https://sketchfab.com/nickheitzman)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "App Island" (https://sketchfab.com/3d-models/app-island-2d22e05e4049493c9f47de897bb67c5e) by nickheitzman (https://sketchfab.com/nickheitzman) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
