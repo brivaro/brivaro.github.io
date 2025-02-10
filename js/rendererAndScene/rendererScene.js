@@ -1,7 +1,7 @@
 export let renderer, scene;
 
 export function iniRendererScene(){
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({ antialias: true }); //reduce los dientes de sierra, puede afectar al rendimiento
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( new THREE.Color(0xFFFFFF) );
     renderer.shadowMap.enabled=true;

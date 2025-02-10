@@ -11,7 +11,7 @@ export const muteIcon = document.getElementById('muteIcon');
 audioLoader.load('../sounds/ocean.mp3', function(buffer) {
     oceanSound.setBuffer(buffer);
     oceanSound.setLoop(true);
-    oceanSound.setVolume(0.4);
+    oceanSound.setVolume(0.5);
     //oceanSound.play();
 });
 
@@ -34,8 +34,8 @@ muteButton.addEventListener('click', () => {
     isMuted = !isMuted;
 
     // Ajustar volumen
-    oceanSound.setVolume(isMuted ? 0 : 0.4);
-    diveSound.setVolume(isMuted ? 0 : 0.3);
+    oceanSound.setVolume(isMuted ? 0 : 0.5);
+    diveSound.setVolume(isMuted ? 0 : 0.5);
 
     // Cambiar icono
     muteIcon.src = isMuted ? "icons/sound-off.png" : "icons/sound-on.png";

@@ -95,7 +95,7 @@ function update()
             const volumeUnderwater = underwaterFactor;
 
             oceanSound.setVolume(volumeAboveWater * 0.2); // Ajusta según necesites
-            diveSound.setVolume(volumeUnderwater * 0.3);    // Ajusta según necesites
+            diveSound.setVolume(volumeUnderwater * 0.5);    // Ajusta según necesites
         } else {
             oceanSound.setVolume(0);
             diveSound.setVolume(0);

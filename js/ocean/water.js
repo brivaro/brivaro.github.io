@@ -1,4 +1,4 @@
-import { Water } from "../../lib/Water.module.js";
+import { Water } from "../../js/ocean/Water.module.js";
 
 export let water;
 
