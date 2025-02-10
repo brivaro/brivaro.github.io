@@ -99,6 +99,7 @@ Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Le
 
 ## Competencias Adicionales 🌟
 
+- **Automatización:** Experiencia en despliegue de clústeres kubernetes con Ansible, Docker, Docker Swarm, 
 - **Comunicación y Colaboración:** Capacidad demostrada para trabajar en equipos multidisciplinarios y entornos colaborativos.  
 - **Liderazgo y Gestión de Proyectos:** Experiencia en la dirección de equipos y coordinación de iniciativas tecnológicas.  
 - **Adaptabilidad y Aprendizaje Continuo:** Comprometido con la innovación y el aprendizaje permanente en nuevas tecnologías.  
@@ -119,7 +120,17 @@ Si deseas colaborar o conocer más sobre mis proyectos, no dudes en contactarme:
 
 ---
 
-¡Gracias por visitar mi perfil!  
-¡Estoy siempre abierto a nuevos desafíos y colaboraciones!
+## Alcance de este proyecto
+
+Este proyecto tiene exclusivamente fines docentes. El proyecto incluye material extraído del proyecto público [Three.js](http://threjs.org) *r140*, bibliotecas de utilidad del texto *"WebGL Programming Guide" de  Kouichi Matsuda y Rodger Lea* y código propio de *<bvalrod@etsinf.upv.es>*.  
+
+Para más información consultar la [wiki](https://github.com/RobVivo/RobVivo.github.io/wiki/INSTRUCCIONES-B%C3%81SICAS)
+
+Para comprobar el funcionamiento del navegador con WebGL [cargue esta página](http://alerone.github.io)
+
+---
+
+🌴 ¡Gracias por visitar mi perfil! 
+💬 ¡Estoy siempre abierto a nuevos desafíos y colaboraciones!
 
 ---
