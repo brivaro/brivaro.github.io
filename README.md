@@ -84,29 +84,7 @@ Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Le
 ## Habilidades Técnicas ⚙️
 
 <div align="center">
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;">
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Teamwork-4CAF50?style=for-the-badge&logo=users&logoColor=white" alt="Teamwork" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Adaptability-FF6600?style=for-the-badge&logo=adjust&logoColor=white" alt="Adaptability" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Lifelong%20Learning-2196F3?style=for-the-badge&logo=book&logoColor=white" alt="Lifelong Learning" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Innovation%20and%20Creativity-FF00FF?style=for-the-badge&logo=lightbulb&logoColor=white" alt="Innovation and Creativity" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Analysis%20and%20Problem%20Solving-1565C0?style=for-the-badge&logo=analytics&logoColor=white" alt="Analysis and Problem Solving" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Planning%20and%20Time%20Management-FFCC00?style=for-the-badge&logo=clock&logoColor=white" alt="Planning and Time Management" />
-        </div>
-        <div style="text-align: center;">
-            <img src="https://img.shields.io/badge/Leadership%20and%20Effective%20Communication-00CC99?style=for-the-badge&logo=megaphone&logoColor=white" alt="Leadership and Effective Communication" />
-        </div>
-    </div>
+    <img src="https://skillicons.dev/icons?i=python,scikitlearn,tensorflow,pytorch,java,mysql,postgresql,sqlite,azure,docker,kubernetes,git,github,vscode,linux,go,javascript,typescript,react,nextjs,html,css,tailwind,figma,fastapi,flask" /><br>
 </div>
 
 ---
