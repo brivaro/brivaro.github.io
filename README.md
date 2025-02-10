@@ -31,6 +31,7 @@
     <li><a href="#logros-y-reconocimientos-">Logros y Reconocimientos</a></li>
     <li><a href="#competencias-adicionales-">Competencias Adicionales</a></li>
     <li><a href="#contacto-">Contacto</a></li>
+    <li><a href="##alcance-de-este-proyecto-">Alcance de este proyecto</a></li>
   </ul>
 </details>
 
@@ -120,7 +121,7 @@ Si deseas colaborar o conocer más sobre mis proyectos, no dudes en contactarme:
 
 ---
 
-## Alcance de este proyecto
+## Alcance de este proyecto 🧩
 
 Este proyecto tiene exclusivamente fines docentes. El proyecto incluye material extraído del proyecto público [Three.js](http://threjs.org) *r140*, bibliotecas de utilidad del texto *"WebGL Programming Guide" de  Kouichi Matsuda y Rodger Lea* y código propio de *<bvalrod@etsinf.upv.es>*.  
 
