@@ -38,7 +38,7 @@
 
 ## Objetivo Profesional 🎯
 
-Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Learning, con más de **1 año de experiencia** en el ámbito de Big Data & AI. Mi expertise abarca desde la automatización de procesos de datos hasta la integración y despliegue de modelos predictivos, lo que ha permitido a empresas tecnológicas optimizar la toma de decisiones estratégicas. Busco prácticas o jornada parcial que me permitan compaginar mi Máster en Ingeniería Informática con nuevos y retadores proyectos.
+Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Learning, con más de **1 año de experiencia** en el ámbito de Big Data & AI. Mi expertise abarca desde la automatización de procesos de datos hasta la integración y despliegue de modelos predictivos, lo que ha permitido a empresas tecnológicas optimizar la toma de decisiones estratégicas.
 
 ---
 
