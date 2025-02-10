@@ -75,7 +75,7 @@ Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Le
 
 **Universidad Politécnica de Valencia**  
 - **Máster en Ingeniería Informática** (En curso)  
-  - *Matrícula de Honor en el Trabajo de Fin de Grado*  
+  - *¡¿Matrícula de Honor en el Trabajo de Fin de Máster?! Lo veremos*  
 - **Grado en Ingeniería Informática** • Graduado en Jun. 2024  
   - *Matrícula de Honor en el Trabajo de Fin de Grado* (TFG: Predicción de escenarios de ventas en impresoras de gran formato)
 
