@@ -1,6 +1,6 @@
 <div align="center">
   <!-- Imagen o logo personalizado (opcional) -->
-  <img height="200" alt="Logo Personal" src="https://user-images.githubusercontent.com/your-logo.png">
+  <img height="200" alt="Logo Personal" src="https://github.com/brivaro/brivaro.github.io/blob/main/icon.png">
 </div>
 
 <h1 align="center">
