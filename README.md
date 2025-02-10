@@ -31,7 +31,7 @@
     <li><a href="#logros-y-reconocimientos-">Logros y Reconocimientos</a></li>
     <li><a href="#competencias-adicionales-">Competencias Adicionales</a></li>
     <li><a href="#contacto-">Contacto</a></li>
-    <li><a href="##alcance-de-este-proyecto-">Alcance de este proyecto</a></li>
+    <li><a href="#alcance-de-este-proyecto-">Alcance de este proyecto</a></li>
   </ul>
 </details>
 
@@ -132,6 +132,7 @@ Para comprobar el funcionamiento del navegador con WebGL [cargue esta página](h
 ---
 
 🌴 ¡Gracias por visitar mi perfil! 
+
 💬 ¡Estoy siempre abierto a nuevos desafíos y colaboraciones!
 
 ---
