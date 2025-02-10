@@ -42,6 +42,14 @@ Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Le
 
 ---
 
+## Habilidades Técnicas ⚙️
+
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=python,scikitlearn,tensorflow,pytorch,java,mysql,postgresql,sqlite,azure,docker,kubernetes,git,github,vscode,linux,go,javascript,typescript,react,nextjs,html,css,tailwind,figma,fastapi,flask" /><br>
+</div>
+
+---
+
 ## Experiencia Profesional 💼
 
 ### HP | Big Data & AI Engineer  
@@ -78,14 +86,6 @@ Soy Ingeniero Informático especializado en Inteligencia Artificial y Machine Le
   - *¡¿Matrícula de Honor en el Trabajo de Fin de Máster?! Lo veremos*  
 - **Grado en Ingeniería Informática** • Graduado en Jun. 2024  
   - *Matrícula de Honor en el Trabajo de Fin de Grado* (TFG: Predicción de escenarios de ventas en impresoras de gran formato)
-
----
-
-## Habilidades Técnicas ⚙️
-
-<div align="center">
-    <img src="https://skillicons.dev/icons?i=python,scikitlearn,tensorflow,pytorch,java,mysql,postgresql,sqlite,azure,docker,kubernetes,git,github,vscode,linux,go,javascript,typescript,react,nextjs,html,css,tailwind,figma,fastapi,flask" /><br>
-</div>
 
 ---
 
