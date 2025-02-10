@@ -25,9 +25,9 @@
   <summary><kbd>Tabla de Contenidos</kbd></summary>
   <ul>
     <li><a href="#objetivo-profesional-">Objetivo Profesional</a></li>
+    <li><a href="#habilidades-técnicas-%EF%B8%8F">Habilidades Técnicas</a></li>
     <li><a href="#experiencia-profesional-">Experiencia Profesional</a></li>
     <li><a href="#educación-">Educación</a></li>
-    <li><a href="#habilidades-técnicas-%EF%B8%8F">Habilidades Técnicas</a></li>
     <li><a href="#logros-y-reconocimientos-">Logros y Reconocimientos</a></li>
     <li><a href="#competencias-adicionales-">Competencias Adicionales</a></li>
     <li><a href="#contacto-">Contacto</a></li>
