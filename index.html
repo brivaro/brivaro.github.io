@@ -5,17 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brian Valiente Rodenas</title>
     <link rel="icon" href="icon.png" type="image/png">
-    <link rel="stylesheet" href="../js/style.css">
+    <link rel="stylesheet" href="../css/main.css">
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Signika+Negative:wght@700&family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- Pantalla de carga -->
@@ -30,7 +25,8 @@
         </div>
     </div>
 
-    <div id="container"></div>
+    <!--Canvas para dibujar -->
+    <div id="container"></div> 
     
     <div id="info">
         <h2>WebGL/Three.js Example</h2>
@@ -55,8 +51,6 @@
     { "imports": { "three": "./lib/three.module.js" } }
     </script>
 
-    <!-- Sustituir por el el script propio -->
-    <!-- <script type="module" src="js/Escena.js"></script> -->
     <script src="lib/three.min_r140.js"></script>
     <script src="lib/OrbitControls.js"></script>
     <script type="module" src="js/app.js"></script>

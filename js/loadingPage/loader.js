@@ -20,7 +20,7 @@ export const loadingManager = new THREE.LoadingManager(
     // Crear botón "Comenzar"
     const startButton = document.createElement('button');
     startButton.innerText = 'READY';
-    startButton.id = 'startButton2';
+    startButton.id = 'startButton';
     /*startButton.className = 'animated-button';
     startButton.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
