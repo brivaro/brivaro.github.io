@@ -5,6 +5,7 @@ const exrPath = "../../skies/4.exr";
 
 export function iniSky(scene, renderer, exrLoader){
     exrLoader.load(exrPath, function (texture) {
+        //texture.type = THREE.HalfFloatType; // Aseguramos el tipo de textura
         const pmremGenerator = new PMREMGenerator(renderer);
         const envMap = pmremGenerator.fromEquirectangular(texture).texture;
         

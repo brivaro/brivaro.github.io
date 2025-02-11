@@ -57,6 +57,7 @@ function loadScene() {
 function updateAspectRatio()
 {
   renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(width.innerWidth, height.innerHeight);  // Actualiza el tamaño del composer
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 }
