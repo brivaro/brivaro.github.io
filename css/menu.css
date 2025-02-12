@@ -1,4 +1,6 @@
-/* Contenedor para ubicar ambos botones en la esquina superior derecha */
+/**************************************/
+/*************  MENU    ***************/
+/**************************************/
 #topButtons {
   position: fixed;
   top: 2rem;
@@ -8,7 +10,9 @@
   z-index: 9998;  /* Asegura que estén por encima de otros elementos */
 }
 
-/* Estilo para el botón de mute */
+/**************************************/
+/***********  BOTON MUTE   ************/
+/**************************************/
 #muteButton {
   height: 60px;
   width: 60px;
@@ -46,8 +50,12 @@
   height: 45%;
 }
 
-/* Panel de menú deslizable desde la derecha */
-#menuPanel {
+
+
+/**************************************/
+/***********   DESPLEGABLE   **********/
+/**************************************/
+#menuOverlay {
   position: fixed;
   top: 0;
   right: -25%;  /* Empieza oculto, fuera de la pantalla */
@@ -56,30 +64,43 @@
   background-color: rgba(255, 255, 255, 0.9);  /* Blanco semi-transparente */
   transition: right 0.3s ease-in-out;  /* Animación para el deslizamiento */
   z-index: 9997;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  font-family: "Monomaniac One", serif;
 }
 
 /* Cuando el menú se abre, se le añade la clase "open" para desplazarlo a la vista */
-#menuPanel.open {
+#menuOverlay.open {
   right: 0;
 }
 
-/* Estilos para los elementos del menú */
-#menuPanel ul {
+/* Aplicar fuente al menú */
+#menuOverlay ul {
   list-style: none;
-  padding: 0;
+  padding: 5em 0 0 0;  /* Añade espacio en la parte superior */
   margin: 0;
+  font-family: "Monomaniac One", serif;
+  text-align: left;  /* Asegura alineación izquierda */
+  font-size: 2rem;  /* Aumenta el tamaño de la letra */
+  line-height: 4rem;  /* Ajusta el espaciado entre líneas */
 }
 
-#menuPanel ul li {
-  margin-bottom: 1.5rem;
+/* Ajustar espaciado de los elementos del menú */
+#menuOverlay ul li {
+  margin-bottom: 1rem; /* Espaciado entre opciones */
 }
 
-#menuPanel ul li a {
+/* Mejorar la apariencia de los enlaces */
+#menuOverlay ul li a {
   text-decoration: none;
-  color: #333;
-  font-size: 1.2rem;
-  /* Puedes agregar más estilos (como la fuente) según tu necesidad */
+  color: #000; /* Asegura contraste con el fondo */
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Cambiar color al pasar el mouse */
+#menuOverlay ul li a:hover {
+  color: #0059fc; /* Azul brillante para destacar */
 }
