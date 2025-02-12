@@ -3,7 +3,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 15vw;       /* Cambiado a vw para que sea relativo al ancho de la pantalla */
+  width: 20vw;       /* Cambiado a vw para que sea relativo al ancho de la pantalla */
   height: 8vh;       /* Cambiado a vh para que sea relativo a la altura de la pantalla */
   background-color: #00000000;
   display: flex;
@@ -26,7 +26,7 @@
   left: -0.1vw;         /* Usado vw para el espacio de los bordes */
   top: -0.1vh;          /* Usado vh para el espacio de los bordes */
   margin: auto;
-  width: 15vw;        /* Ajustado a vw */
+  width: 20vw;        /* Ajustado a vw */
   height: 8vh;        /* Ajustado a vh */
   border-radius: 3em; /* Ajustado con em */
   background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
@@ -55,4 +55,39 @@
 
 #startButton:active::before {
   scale: 0.7;
+}
+
+
+/********************************/
+#start {
+  width: 10em;
+  height: 3em;
+  border-radius: 30em;
+  font-size: 2vh;
+  font-family: inherit;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-top: 3em;
+  font-family: "Monomaniac One", serif;
+  cursor: pointer;
+}
+ 
+#start::before {
+  content: '';
+  width: 0;
+  height: 3em;
+  border-radius: 30em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+  transition: .5s ease;
+  display: block;
+  z-index: -1;
+}
+ 
+#start:hover::before {
+  width: 10em;
 }

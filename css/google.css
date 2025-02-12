@@ -5,23 +5,29 @@
     font-style: normal;
     font-size: 7em;
     margin: 0.2em 0;
-  }
+}
   
-  .signika-negative-loader {
-    font-family: "Signika Negative", serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 4em;
-    margin: 0.2em 0;
-  }
-  
-  .signika-negative-presentation {
-    font-family: "Signika Negative", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 2em;
-    margin: 20px auto 10px; /* Aumenta el espacio arriba */
-  }
-  
+.signika-negative-loader {
+  font-family: "Signika Negative", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 4em;
+  margin: 0.2em 0;
+}
+
+.signika-negative-presentation {
+  font-family: "Signika Negative", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2em;
+  margin: 20px auto 10px; /* Aumenta el espacio arriba */
+}
+
+.monomaniac-one-regular {
+  font-family: "Monomaniac One", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2em;
+}

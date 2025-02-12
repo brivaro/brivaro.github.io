@@ -1,5 +1,5 @@
 
-import { startAudio } from "../music/music.js";
+import { startAudio } from "../ui/music.js";
 
 // -------------------------
 // Configuración del LoadingManager
@@ -20,7 +20,8 @@ export const loadingManager = new THREE.LoadingManager(
     // Crear botón "Comenzar"
     const startButton = document.createElement('button');
     startButton.innerText = 'READY';
-    startButton.id = 'startButton';
+    //startButton.id = 'startButton';
+    startButton.id = 'start';
 
     // Agregar el botón a la pantalla de carga
     const loadingContent = document.querySelector('.loadingContent');

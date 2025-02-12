@@ -6,7 +6,8 @@ import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
 import { iniModels, mobile } from "./importedAssets/importModels.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
-import { listener, oceanSound, diveSound, isMuted } from "../js/music/music.js";
+import { listener, oceanSound, diveSound, isMuted } from "./ui/music.js";
+import { menuButton } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
 
@@ -17,6 +18,7 @@ const loader = new GLTFLoader(loadingManager);
 const exrLoader = new EXRLoader(loadingManager);
 
 // Obtener el checkbox del modo
+//const nightCheckbox = document.getElementById("input");
 const nightCheckbox = document.getElementById("checkbox");
 let isNight = nightCheckbox.checked;
 
@@ -150,3 +152,4 @@ function updateSceneMode() {
 
 // Escucha el cambio en el checkbox para actualizar la escena dinámicamente
 nightCheckbox.addEventListener('change', updateSceneMode);
+

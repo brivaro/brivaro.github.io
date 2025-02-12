@@ -1,0 +1,85 @@
+/* Contenedor para ubicar ambos botones en la esquina superior derecha */
+#topButtons {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;       /* Espacio entre los botones */
+  z-index: 9998;  /* Asegura que estén por encima de otros elementos */
+}
+
+/* Estilo para el botón de mute */
+#muteButton {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#muteButton img {
+  width: 60%;
+  height: 60%;
+}
+
+/* Estilo para el botón de menú */
+#menuButton {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menuButton img {
+  width: 45%;
+  height: 45%;
+}
+
+/* Panel de menú deslizable desde la derecha */
+#menuPanel {
+  position: fixed;
+  top: 0;
+  right: -25%;  /* Empieza oculto, fuera de la pantalla */
+  width: 25%;   /* Ocupa un cuarto del ancho de la pantalla */
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);  /* Blanco semi-transparente */
+  transition: right 0.3s ease-in-out;  /* Animación para el deslizamiento */
+  z-index: 9997;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cuando el menú se abre, se le añade la clase "open" para desplazarlo a la vista */
+#menuPanel.open {
+  right: 0;
+}
+
+/* Estilos para los elementos del menú */
+#menuPanel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menuPanel ul li {
+  margin-bottom: 1.5rem;
+}
+
+#menuPanel ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  /* Puedes agregar más estilos (como la fuente) según tu necesidad */
+}

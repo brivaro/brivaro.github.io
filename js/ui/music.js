@@ -2,10 +2,11 @@
 export const listener = new THREE.AudioListener();
 export const oceanSound = new THREE.Audio(listener);
 export const diveSound = new THREE.Audio(listener);
-export const audioLoader = new THREE.AudioLoader();
 export let isMuted = false;
-export const muteButton = document.getElementById('muteButton');
-export const muteIcon = document.getElementById('muteIcon');
+
+const audioLoader = new THREE.AudioLoader();
+const muteButton = document.getElementById('muteButton');
+const muteIcon = document.getElementById('muteIcon');
 
 // Cargar sonido ambiente (olas)
 audioLoader.load('../sounds/ocean.mp3', function(buffer) {
