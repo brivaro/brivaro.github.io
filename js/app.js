@@ -80,6 +80,11 @@ function update()
 {
     // Cambios para actualizar la camara segun mvto del raton
     cameraControls.update();
+
+    // Comprueba que la cámara no baje por debajo de y = -0.5
+    if (camera.position.y < -1.1) {
+        camera.position.y = -1.1;
+    }
     
     // Actualizar la animación del agua
     const delta = clock.getDelta();
@@ -153,8 +158,13 @@ function updateSceneMode() {
     if (isNight) {
       // En modo noche
       fireworkSound.setVolume(1);
-      const light = new THREE.AmbientLight(0xffffff, 1);
+      let light = new THREE.AmbientLight(0xffffff, 0.3);
       light.name = "ln";
+      scene.add(light);
+      light = new THREE.DirectionalLight(0xffffff, 1);
+      light.position.set(1000, 2000, 1000);
+      light.target.position.set(0, 1, 0); // Apunta a (0,1,0)
+      light.name = "ln1";
       scene.add(light);
       // Si es de noche, activamos los fuegos artificiales
       if (!fireworksManager) {
@@ -164,6 +174,7 @@ function updateSceneMode() {
       // En modo día
       fireworkSound.setVolume(0);
       scene.remove(scene.getObjectByName('ln'));
+      scene.remove(scene.getObjectByName('ln1'));
       iniLights(scene);
       // Si pasa a día, eliminamos los fuegos (si lo deseas)
       if (fireworksManager) {

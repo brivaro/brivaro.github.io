@@ -180,8 +180,17 @@ class Firework {
       if (piece.mesh.geometry) piece.mesh.geometry.dispose();
       if (piece.mesh.material) piece.mesh.material.dispose();
     }
+    
+    // Eliminamos las partículas del rastro (trail)
+    for (let particle of this.trailParticles) {
+      this.scene.remove(particle.mesh);
+      if (particle.mesh.geometry) particle.mesh.geometry.dispose();
+      if (particle.mesh.material) particle.mesh.material.dispose();
+    }
+    
     // Eliminamos la luz
     this.group.remove(this.light);
+    
     // Quitamos el grupo de la escena
     this.scene.remove(this.group);
   }

@@ -15,7 +15,7 @@ export function iniWater(scene){
                 texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping; //RepeatWrapping
                 texture.repeat.set(1000, 1000); // Ajusta según lo necesites
             }),
-            alpha: 0.9,
+            alpha: 0.7,
             //sunDirection: directionalLight.position.clone().normalize(),
             sunColor: 0xffffff,
             waterColor: 0xFFFFFF,
@@ -24,7 +24,7 @@ export function iniWater(scene){
         }
     );
     water.rotation.x = -Math.PI / 2;
-    //water.position.set(0,0.4,0);
+    water.position.set(-20,0,20);
     water.receiveShadow = true;
     scene.add(water);
 }

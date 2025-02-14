@@ -11,5 +11,8 @@ export function iniCamera(renderer){
     cameraControls.dampingFactor = 0.05;
     cameraControls.screenSpacePanning = false;
     cameraControls.minDistance = 0.5;
-    cameraControls.maxDistance = 500;
+    cameraControls.maxDistance = 400;
+
+    //cameraControls.minPolarAngle = -0.5;            // Permite mirar directamente hacia arriba
+    //cameraControls.maxPolarAngle = Math.PI / 2;    // Limita la rotación para que nunca apunte hacia abajo
 }
