@@ -41,6 +41,11 @@ class Firework {
     this.explosionDuration = 2.0; // duración de la explosión (segundos)
     this.explosionPieces = []; // para almacenar las piezas de la explosión
 
+    // Propiedades para el rastro (trail)
+    this.trailParticles = [];
+    this.lastTrailSpawnTime = 0;
+    this.trailSpawnInterval = 0.08; // segundos entre partículas
+
     // Luz puntual para iluminar la escena con el color del fuego
     this.light = new THREE.PointLight(this.color, 5, 50);
     this.light.position.set(0, 0, 0);
@@ -57,11 +62,16 @@ class Firework {
       if (this.group.position.y >= this.explosionHeight) {
         this.triggerExplosion(timeNow);
       }
+      // Genera partículas del rastro en intervalos regulares
+      if (timeNow - this.lastTrailSpawnTime > this.trailSpawnInterval) {
+        this.spawnTrailParticle(timeNow);
+        this.lastTrailSpawnTime = timeNow;
+      }
     } else if (this.state === 'exploded') {
       // Actualizamos la explosión
       const elapsed = timeNow - this.explosionStartTime;
       
-      // Actualizamos cada pieza: se alejan, se reducen y se desvanecen
+      // Cada pieza se aleja, se reduce y se desvanece
       for (let piece of this.explosionPieces) {
         // Movimiento en dirección asignada
         piece.mesh.position.addScaledVector(piece.direction, delta * 2);
@@ -81,6 +91,39 @@ class Firework {
         this.state = 'finished';
       }
     }
+    // Actualiza las partículas del rastro (trail)
+    for (let i = this.trailParticles.length - 1; i >= 0; i--) {
+      const particle = this.trailParticles[i];
+      const age = timeNow - particle.creationTime;
+      const lifetime = 0.5; // duración de la partícula
+      if (age > lifetime) {
+        this.scene.remove(particle.mesh);
+        if (particle.mesh.geometry) particle.mesh.geometry.dispose();
+        if (particle.mesh.material) particle.mesh.material.dispose();
+        this.trailParticles.splice(i, 1);
+      } else {
+        // Se desvanece progresivamente
+        particle.mesh.material.opacity = 1 - (age / lifetime);
+      }
+    }
+  }
+
+  spawnTrailParticle(timeNow) {
+    // Creamos una pequeña esfera que simula la partícula del rastro
+    const geometry = new THREE.SphereGeometry(0.4, 8, 8);
+    const material = new THREE.MeshBasicMaterial({
+      color: this.color,
+      transparent: true,
+      opacity: 1,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const particleMesh = new THREE.Mesh(geometry, material);
+    // La partícula se posiciona donde está el cubo en ese momento
+    particleMesh.position.copy(this.group.position);
+    // Se añade directamente a la escena para que quede fija en su posición de creación
+    this.scene.add(particleMesh);
+    this.trailParticles.push({ mesh: particleMesh, creationTime: timeNow });
   }
 
   triggerExplosion(timeNow) {

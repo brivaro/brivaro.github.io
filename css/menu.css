@@ -64,10 +64,12 @@
   background-color: rgba(255, 255, 255, 0.9);  /* Blanco semi-transparente */
   transition: right 0.3s ease-in-out;  /* Animación para el deslizamiento */
   z-index: 9997;
-  padding: 1.5rem;
+  padding: 2rem;
+  padding-right: 1rem;
   display: flex;
   flex-direction: column;
   font-family: "Monomaniac One", serif;
+  box-sizing: border-box;  /* Incluye el padding dentro del ancho definido */
 }
 
 /* Cuando el menú se abre, se le añade la clase "open" para desplazarlo a la vista */
@@ -103,4 +105,28 @@
 /* Cambiar color al pasar el mouse */
 #menuOverlay ul li a:hover {
   color: #0059fc; /* Azul brillante para destacar */
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  #menuOverlay {
+    width: 80%;         /* Ocupa el 80% del ancho en móviles */
+    right: -80%;        /* Se inicia oculto acorde al nuevo ancho */
+    padding: 1rem;      /* Reducir el padding */
+  }
+  
+  #menuOverlay ul {
+    padding-top: 3em;   /* Menos espacio superior */
+    padding-right: 1rem; /* Mantiene un margen a la derecha */
+    font-size: 1.5rem;  /* Reducir el tamaño de la fuente */
+    line-height: 2.5rem;/* Reducir el interlineado */
+  }
+  
+  #menuOverlay ul li {
+    margin-bottom: 0.8rem; /* Reducir el espaciado entre elementos */
+  }
+  
+  #menuOverlay ul li a {
+    padding: 0.4rem 0.8rem; /* Ajuste de padding en los enlaces */
+  }
 }
