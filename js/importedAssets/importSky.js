@@ -1,4 +1,4 @@
-import { PMREMGenerator } from 'three';
+import { PMREMGenerator, EquirectangularReflectionMapping } from 'three';
 
 let skyEnvironments = {
   day: null,
@@ -7,21 +7,35 @@ let skyEnvironments = {
 
 // Rutas de las texturas EXR
 const paths = {
-  day: "../../skies/day.exr",
+  day: "../../skies/day.hdr",
   night: "../../skies/night.exr",
 };
 
-export function iniSkies(renderer, exrLoader) {
+export function iniSkies(renderer, exrLoader, rgbeLoader) {
   // Se crea el PMREMGenerator para convertir las texturas EXR
   const pmremGenerator = new PMREMGenerator(renderer);
   pmremGenerator.compileEquirectangularShader();
 
   // Cargar ambas texturas en paralelo
   return Promise.all([
+    // EXR
+    //new Promise((resolve, reject) => {
+    //  exrLoader.load(
+    //    paths.day,
+    //    (texture) => {
+    //      skyEnvironments.day = pmremGenerator.fromEquirectangular(texture).texture;
+    //      texture.dispose();
+    //      resolve();
+    //    },
+    //    undefined,
+    //    reject
+    //  );
+    //}),
+    // Cargar HDR con RGBELoader y generar PMREM
     new Promise((resolve, reject) => {
-      exrLoader.load(
-        paths.day,
+      rgbeLoader.load( paths.day,
         (texture) => {
+          texture.mapping = EquirectangularReflectionMapping;
           skyEnvironments.day = pmremGenerator.fromEquirectangular(texture).texture;
           texture.dispose();
           resolve();
@@ -30,9 +44,9 @@ export function iniSkies(renderer, exrLoader) {
         reject
       );
     }),
+
     new Promise((resolve, reject) => {
-      exrLoader.load(
-        paths.night,
+      exrLoader.load(paths.night,
         (texture) => {
           skyEnvironments.night = pmremGenerator.fromEquirectangular(texture).texture;
           texture.dispose();
@@ -51,6 +65,6 @@ export function iniSkies(renderer, exrLoader) {
 
 export function updateSky(scene, isNight) {
   const envMap = isNight ? skyEnvironments.night : skyEnvironments.day;
-  scene.background = envMap;  // Actualiza el fondo
-  scene.environment = envMap; // Actualiza el entorno para reflejos
+  scene.background = envMap;  // Fondos para el entorno
+  scene.environment = envMap; // Reflejos para el entorno
 }

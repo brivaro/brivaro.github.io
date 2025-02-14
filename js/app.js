@@ -11,12 +11,14 @@ import { menuButton } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
 import { FireworksManager } from '../js/lights/fireworks.js';
+import { RGBELoader } from "../../lib/RGBELoader.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 
 
 const loader = new GLTFLoader(loadingManager);
 const exrLoader = new EXRLoader(loadingManager);
+const rgbeLoader = new RGBELoader(loadingManager);
 
 // Obtener el checkbox del modo
 //const nightCheckbox = document.getElementById("input");
@@ -61,7 +63,7 @@ function loadScene() {
     iniWuhuIsland(scene, loader);
 
     // 🎆 Cargar cielos (día y noche) y actualizar 🎆
-    iniSkies(renderer, exrLoader).then(() => {
+    iniSkies(renderer, exrLoader, rgbeLoader).then(() => {
         updateSky(scene, isNight);
     });
 
