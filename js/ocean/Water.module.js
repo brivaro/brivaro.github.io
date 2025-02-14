@@ -10,8 +10,8 @@ const vertexShader = `
     
     // Desplazamiento simple en la dirección Z (puedes ajustar la intensidad y frecuencia)
     vec3 pos = position;
-    pos.z += sin(pos.x * 0.1 + time) * 0.5;
-    pos.z += cos(pos.y * 0.1 + time) * 0.5;
+    pos.z += sin(pos.x * 0.1 + time) * 0.1;
+    pos.z += cos(pos.y * 0.1 + time) * 0.1;
     
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
@@ -61,7 +61,7 @@ class Water extends THREE.Mesh {
     options = Object.assign({
       textureWidth: 512,
       textureHeight: 512,
-      waterNormals: null, // Debes proporcionar una textura de normales, por ejemplo 'models/waternormals.jpg'
+      waterNormals: null, // mi png waternormals
       sunDirection: new THREE.Vector3(0.70707, 0.70707, 0),
       sunColor: 0xffffff,
       waterColor: 0x001e0f,

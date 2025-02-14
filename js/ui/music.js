@@ -2,6 +2,7 @@
 export const listener = new THREE.AudioListener();
 export const oceanSound = new THREE.Audio(listener);
 export const diveSound = new THREE.Audio(listener);
+export const fireworkSound = new THREE.Audio(listener);
 export let isMuted = false;
 
 const audioLoader = new THREE.AudioLoader();
@@ -22,6 +23,14 @@ audioLoader.load('../sounds/dive.mp3', function(buffer) {
     diveSound.setLoop(true);
     diveSound.setVolume(0); // Inicialmente en silencio
     //diveSound.play();
+});
+
+// Cargar sonido ambiente (olas)
+audioLoader.load('../sounds/fireworks.mp3', function(buffer) {
+    fireworkSound.setBuffer(buffer);
+    fireworkSound.setLoop(true);
+    fireworkSound.setVolume(0); // Inicialmente en silencio
+    //fireworkSound.play();
 });
 
 muteButton.addEventListener('click', () => {
@@ -51,4 +60,5 @@ export function startAudio() {
     }
     oceanSound.play();
     diveSound.play();
+    fireworkSound.play();
 }

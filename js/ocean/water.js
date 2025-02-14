@@ -24,11 +24,12 @@ export function iniWater(scene){
         }
     );
     water.rotation.x = -Math.PI / 2;
+    //water.position.set(0,0.4,0);
     water.receiveShadow = true;
     scene.add(water);
 }
 
 export function getWaveHeight(x, z, time) {
     // Calcula la posicion de las olas del mar    
-    return Math.sin(x * 0.1 + time) * 0.5 + Math.cos(z * 0.1 + time) * 0.5;
+    return Math.sin(x * 0.1 + time) * 0.08 + Math.cos(z * 0.1 + time) * 0.08;
 }

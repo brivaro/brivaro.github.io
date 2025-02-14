@@ -13,13 +13,17 @@
   pointer-events: none;
 }
 
+/* Contenedor interno de la pantalla de carga */
 .loadingContent {
   text-align: center;
   color: #fff;
   font-family: 'Arial', sans-serif;
-  width: 100vw;
-  height: 70vh;
-  /* Hacemos que el contenido sí reciba eventos */
+  /* Permite que el contenido se adapte al tamaño de pantalla */
+  width: 95%;
+  max-width: 100vw;
+  /* Espaciado interno para que no toque los bordes */
+  padding: 1rem;
+  /* Se asegura que los elementos puedan recibir eventos */
   pointer-events: auto;
 }
 
@@ -40,4 +44,26 @@
 
 #loadingText {
   font-size: 1em;
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 95vw) {
+  .loadingContent h1 {
+    font-size: 1.5rem;
+  }
+  
+  .loadingContent h2 {
+    font-size: 1.2rem;
+  }
+  
+  .loadingContent h3 {
+    font-size: 1rem;
+  }
+  
+  #loadingCircle {
+    width: 40px;
+    height: 40px;
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 6px solid #fff;
+  }
 }
