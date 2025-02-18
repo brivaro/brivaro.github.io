@@ -37,3 +37,31 @@ body {
     margin-bottom: 0.5rem;
     color: #333;
 }
+
+#fpButton {
+    position: absolute;
+    bottom: 2rem; /* Margen desde la parte inferior */
+    left: 50%;
+    transform: translateX(-50%); /* Centrar horizontalmente */
+    height: 70px;
+    width: 70px;
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    z-index: 9998;
+}
+
+#fpButton:hover {
+    background-color: #f0f0f0;
+}
+
+#fpButton img {
+    width: 70%;
+    height: 70%;
+}

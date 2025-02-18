@@ -4,14 +4,17 @@ import { iniCamera, camera, cameraControls } from "../js/camera/camera.js";
 import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/rendererScene.js";
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
-import { iniMobile, iniWuhuIsland, mobile, wuhu_island } from "./importedAssets/importModels.js";
+import { iniMobile, iniWuhuIsland, mobile } from "./importedAssets/importModels.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound } from "./ui/music.js";
-import { menuButton } from "../js/ui/menu.js";
+import { iniMenu } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
 import { FireworksManager } from '../js/lights/fireworks.js';
 import { RGBELoader } from "../../lib/RGBELoader.js";
+import {TWEEN} from "../lib/tween.module.min.js";
+import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
+import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 
@@ -20,9 +23,10 @@ const loader = new GLTFLoader(loadingManager);
 const exrLoader = new EXRLoader(loadingManager);
 const rgbeLoader = new RGBELoader(loadingManager);
 
-// Obtener el checkbox del modo
-//const nightCheckbox = document.getElementById("input");
+// Obtener elementos para cambiar los modos
 const nightCheckbox = document.getElementById("checkbox");
+const playerView = document.getElementById("fpButton");
+const menuButton = document.getElementById('menuButton');
 let isNight = nightCheckbox.checked;
 let fireworksManager = null;
 
@@ -48,7 +52,10 @@ function init() {
     window.addEventListener('resize', updateAspectRatio );
 
     // 🌍 Actualiza el entorno 🌍
+    playerView.addEventListener("click", (event) => updatePlayerView(event, camera, cameraControls, renderer));
     nightCheckbox.addEventListener('change', updateSceneMode);
+    iniMenu(menuButton, playerView);
+    keybuttoms();
 }
 
 function loadScene() {
@@ -80,18 +87,35 @@ function updateAspectRatio()
 
 function update()
 {
-    // Cambios para actualizar la camara segun mvto del raton
-    cameraControls.update();
-
-    // Comprueba que la cámara no baje por debajo de y = -0.5
-    if (camera.position.y < -1.1) {
-        camera.position.y = -1.1;
-    }
-    
-    // Actualizar la animación del agua
+    // Actualizar las animaciones
     const delta = clock.getDelta();
     const elapsedTime = clock.getElapsedTime();
     let waveOffset = 0.0;
+
+    // Cambios para actualizar la camara segun mvto del raton
+    if (!isFirstPerson) {
+        cameraControls.update();
+    }
+
+    if (isFirstPerson) {
+        // Actualizamos movimiento horizontal
+        updatePlayer(delta, camera);
+        // Actualizamos el salto (si se presiona espacio)
+        updateJump(camera);
+        // Actualizamos la posición vertical (gravedad y colisión con el suelo)
+        updatePlayerY(delta, camera);
+        
+        if (fpControls) {
+            fpControls.update(delta); // Solo para la rotación (mirada)
+        }
+    } else {
+        cameraControls.update();
+    }
+
+    // Comprueba que la cámara no baje por debajo de y
+    if (camera.position.y < -1.1) {
+        camera.position.y = -1.1;
+    }
     
     if (water){
         waveOffset = getWaveHeight(water.position.x, water.position.z, elapsedTime * 0.5); // calcular la altura de la ola
@@ -108,7 +132,7 @@ function update()
     // Actualizar el shader underwater según la posición de la cámara
     let underwaterFactor = 0.0; // si camara esta arriba
     if (camera.position.y < waveOffset) { // si te metes el factor cambia
-        underwaterFactor = Math.min(1.0, (waveOffset - camera.position.y) / 5.0); // baja la cámara, mayor el efecto;
+        underwaterFactor = Math.min(4.0, (waveOffset - camera.position.y)); // baja la cámara, mayor el efecto;
     }
     underwaterPass.uniforms.underwaterFactor.value = underwaterFactor;
     underwaterPass.uniforms.time.value += delta;
@@ -138,6 +162,7 @@ function update()
 
 function render() {
     requestAnimationFrame(render);
+    TWEEN.update(); // Actualizar las animaciones tween
     update();
     //renderer.render(scene, camera);
     composer.render() // con el postprocesado
