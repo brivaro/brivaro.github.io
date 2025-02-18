@@ -6,7 +6,7 @@ import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
 import { iniMobile, iniWuhuIsland, mobile } from "./importedAssets/importModels.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
-import { listener, oceanSound, diveSound, isMuted, fireworkSound } from "./ui/music.js";
+import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound } from "./ui/music.js";
 import { iniMenu } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
@@ -175,6 +175,7 @@ function render() {
 // -------------------------
 function updateSceneMode() {
     isNight = nightCheckbox.checked;
+    dayNightSound.play();
 
     // Elimina las luces existentes:
     scene.remove(scene.getObjectByName('ld'));

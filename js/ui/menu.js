@@ -1,3 +1,5 @@
+import { menuSound } from "./music.js";
+
 const menuIcon = document.getElementById('menuIcon');
 const playerIcon = document.getElementById('playerView');
 const menuOverlay = document.getElementById('menuOverlay');
@@ -15,6 +17,7 @@ export function iniMenu(menuButton, playerView){
             menuOverlay.classList.remove('open');
             menuIcon.src = "icons/menu.png"; // Icono para abrir el menú
         }
+        menuSound.play();
     });
 
     playerView.addEventListener('click', () => {
@@ -25,6 +28,7 @@ export function iniMenu(menuButton, playerView){
         } else {
             playerIcon.src = "icons/fp.png"; // Icono para abrir el menú
         }
+        menuSound.play();
     });
 }
 

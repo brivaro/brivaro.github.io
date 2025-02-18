@@ -3,11 +3,27 @@ export const listener = new THREE.AudioListener();
 export const oceanSound = new THREE.Audio(listener);
 export const diveSound = new THREE.Audio(listener);
 export const fireworkSound = new THREE.Audio(listener);
+export const dayNightSound = new THREE.Audio(listener);
+export const menuSound = new THREE.Audio(listener);
 export let isMuted = false;
 
 const audioLoader = new THREE.AudioLoader();
 const muteButton = document.getElementById('muteButton');
 const muteIcon = document.getElementById('muteIcon');
+
+// Cargar sonido boton dia noche
+audioLoader.load('../sounds/day.mp3', function(buffer) {
+    dayNightSound.setBuffer(buffer);
+    dayNightSound.setLoop(false);
+    dayNightSound.setVolume(0.7);
+});
+
+// Cargar sonido menus
+audioLoader.load('../sounds/menu.mp3', function(buffer) {
+    menuSound.setBuffer(buffer);
+    menuSound.setLoop(false);
+    menuSound.setVolume(0.6);
+});
 
 // Cargar sonido ambiente (olas)
 audioLoader.load('../sounds/ocean.mp3', function(buffer) {
@@ -42,6 +58,7 @@ muteButton.addEventListener('click', () => {
     }
     
     isMuted = !isMuted;
+    menuSound.play();
 
     // Ajustar volumen
     oceanSound.setVolume(isMuted ? 0 : 0.5);
