@@ -50,7 +50,7 @@ function checkHeadCollision(camera) {
  * Se ha ampliado el buffer de colisión para que se detenga antes de llegar a la pared.
  */
 export function updatePlayer(delta, camera) {
-    const speed = 3; // Velocidad de movimiento
+    const speed = 2.5; // Velocidad de movimiento
     let moveX = 0, moveZ = 0;
     if (keysPressed['KeyW']) moveZ -= 1;
     if (keysPressed['KeyS']) moveZ += 1;

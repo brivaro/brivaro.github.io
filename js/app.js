@@ -55,7 +55,7 @@ function init() {
     playerView.addEventListener("click", (event) => updatePlayerView(event, camera, cameraControls, renderer));
     nightCheckbox.addEventListener('change', updateSceneMode);
     iniMenu(menuButton, playerView);
-    keybuttoms();
+    keybuttoms(); //para el movimiento en primera persona
 }
 
 function loadScene() {
