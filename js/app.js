@@ -4,7 +4,7 @@ import { iniCamera, camera, cameraControls } from "../js/camera/camera.js";
 import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/rendererScene.js";
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
-import { iniMobile, iniWuhuIsland, mobile } from "./importedAssets/importModels.js";
+import { iniWuhuIsland, mobile } from "./importedAssets/importModels.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound } from "./ui/music.js";
 import { iniMenu } from "../js/ui/menu.js";
@@ -66,7 +66,6 @@ function loadScene() {
     iniWater(scene);
 
     // 📱 Modelo importado en el centro 📱
-    iniMobile(scene, loader);
     iniWuhuIsland(scene, loader);
 
     // 🎆 Cargar cielos (día y noche) y actualizar 🎆
@@ -189,10 +188,25 @@ function updateSceneMode() {
       let light = new THREE.AmbientLight(0xffffff, 0.3);
       light.name = "ln";
       scene.add(light);
-      light = new THREE.DirectionalLight(0xffffff, 1);
+      light = new THREE.DirectionalLight(0xffffff, 0.7);
       light.position.set(1000, 2000, 1000);
       light.target.position.set(0, 1, 0); // Apunta a (0,1,0)
       light.name = "ln1";
+      light.castShadow = true;
+      // Configuración de la cámara de sombras
+      light.shadow.camera.left = -50;
+      light.shadow.camera.right = 50;
+      light.shadow.camera.top = 50;
+      light.shadow.camera.bottom = -50;
+      // Resolucion mapa sombras
+      light.shadow.mapSize.width = 4096;
+      light.shadow.mapSize.height = 4096;
+      // Define a partir de que margen crea sombra
+      light.shadow.camera.far = 4000;
+      light.shadow.camera.near = 0.5;
+      // Si es negativo, corrige artefactos en sombras, muy positivo reduce mucho la sombra
+      light.shadow.bias = -0.0001;
+      light.shadow.normalBias = 0.05;
       scene.add(light);
       // Si es de noche, activamos los fuegos artificiales
       if (!fireworksManager) {
@@ -213,7 +227,7 @@ function updateSceneMode() {
 
     // Actualiza el cielo según el modo
     updateSky(scene, isNight);
-  }
+}
 
 
 

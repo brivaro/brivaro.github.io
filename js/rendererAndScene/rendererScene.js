@@ -5,6 +5,7 @@ export function iniRendererScene(){
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( new THREE.Color(0xFFFFFF) );
     renderer.shadowMap.enabled=true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // para suavizar sombras
     renderer.shadowMap.type=0;
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.domElement.style.position = 'relative';
