@@ -103,6 +103,8 @@ function update()
         updateJump(camera);
         // Actualizamos la posición vertical (gravedad y colisión con el suelo)
         updatePlayerY(delta, camera);
+        // Actualizamos el efecto de head bobbing
+        //updateHeadBobbing(delta, camera);
         
         if (fpControls) {
             fpControls.update(delta); // Solo para la rotación (mirada)

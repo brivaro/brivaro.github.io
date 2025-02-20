@@ -5,6 +5,7 @@ export const diveSound = new THREE.Audio(listener);
 export const fireworkSound = new THREE.Audio(listener);
 export const dayNightSound = new THREE.Audio(listener);
 export const menuSound = new THREE.Audio(listener);
+export const walkSound = new THREE.Audio(listener);
 export let isMuted = false;
 
 const audioLoader = new THREE.AudioLoader();
@@ -16,6 +17,13 @@ audioLoader.load('../sounds/day.mp3', function(buffer) {
     dayNightSound.setBuffer(buffer);
     dayNightSound.setLoop(false);
     dayNightSound.setVolume(0.7);
+});
+
+// Cargar sonido walking
+audioLoader.load('../sounds/walk.mp3', function(buffer) {
+    walkSound.setBuffer(buffer);
+    walkSound.setLoop(false);
+    walkSound.setVolume(0.6);
 });
 
 // Cargar sonido menus

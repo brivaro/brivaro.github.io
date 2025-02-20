@@ -1,5 +1,5 @@
 import { wuhu_island } from "../importedAssets/importModels.js";
-
+import { walkSound } from "../ui/music.js";
 // ------------------------------
 // Variables para el salto y la gravedad
 // ------------------------------
@@ -80,10 +80,15 @@ export function updatePlayer(delta, camera) {
         // Si hay colisión, se detiene el avance un poco antes del impacto.
         const adjustedPosition = intersections[0].point.clone().addScaledVector(direction, -collisionBuffer);
         camera.position.copy(adjustedPosition);
+        walkSound.pause();
       } else {
         // Si no hay colisión, se actualiza la posición normalmente.
+        walkSound.play();
         camera.position.copy(proposedPosition);
       }
+    }
+    else{
+      walkSound.pause();
     }
 }
 
@@ -100,6 +105,7 @@ export function updateJump(camera) {
     if (keysPressed['Space'] && isOnGround && !headBlocked) {
         verticalVelocity = jumpSpeed;
         isOnGround = false;
+        walkSound.pause();
         // Consumir la pulsación para evitar saltos continuos al mantener presionada la tecla
         keysPressed['Space'] = false;
     }
@@ -136,5 +142,6 @@ export function updatePlayerY(delta, camera) {
       isOnGround = true;
     } else {
       isOnGround = false;
+      walkSound.pause();
     }
 }
