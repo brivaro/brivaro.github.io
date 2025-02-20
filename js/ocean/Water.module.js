@@ -86,7 +86,9 @@ class Water extends THREE.Mesh {
       uniforms: uniforms,
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
-      transparent: true
+      transparent: true,
+      side: THREE.DoubleSide,    // Para renderizar ambos lados
+      depthWrite: false          // Para permitir ver objetos detrás
     });
 
     // Llamar al constructor de THREE.Mesh

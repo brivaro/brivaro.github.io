@@ -12,7 +12,7 @@ import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
 import { FireworksManager } from '../js/lights/fireworks.js';
 import { RGBELoader } from "../../lib/RGBELoader.js";
-import {TWEEN} from "../lib/tween.module.min.js";
+import { TWEEN } from "../lib/tween.module.min.js";
 import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
 import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
 
