@@ -1,7 +1,7 @@
 import { GUI } from "../../lib/lil-gui.module.min.js";
 import { camera } from "../camera/camera.js";
 
-export let mobile, wuhu_island;
+export let mobile, wuhu_island, gui;
 export let map_pointers = [];
 let cube;
 
@@ -104,7 +104,7 @@ function initCubeWithGUI() {
     };
 
     // Crear la GUI y agregar los controles para la posición
-    const gui = new GUI();
+    gui = new GUI();
     const cubeFolder = gui.addFolder("Posición del Cubo (Relativa a la Isla)");
     // Control para el eje X
     cubeFolder.add(cubePos, "x", -1000, 1000)
@@ -167,11 +167,13 @@ function initCubeWithGUI() {
     guiContainer.style.top = "auto";
     }
 
+    gui.close();
+
     // Actualizar valores de la GUI en cada frame
     function updateGUI() {
-      cameraPos.x = camera.position.x;
-      cameraPos.y = camera.position.y;
-      cameraPos.z = camera.position.z;
+      cameraPos.x = Math.round(camera.position.x);
+      cameraPos.y = Math.round(camera.position.y);
+      cameraPos.z = Math.round(camera.position.z);
       requestAnimationFrame(updateGUI);
     }
     updateGUI();

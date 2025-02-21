@@ -4,6 +4,7 @@
 */
 import {TWEEN} from "../../lib/tween.module.min.js";
 import { FirstPersonControls } from '../../lib/FirstPersonControls.js';
+import { gui } from "../importedAssets/importModels.js";
 
 export let isFirstPerson = false;
 export let fpControls = null;
@@ -47,13 +48,21 @@ export function updatePlayerView(event, camera, cameraControls, renderer){
         fpControls.movementSpeed = 0; // Desactivamos el movimiento interno
         fpControls.noFly = true;
         fpControls.lookVertical = true;
+        const controlsFolder = gui.addFolder("First Person Controls");
+        controlsFolder.add(fpControls, "lookSpeed", 0.1, 1).name("Look Speed").step(0.05);
         }, 1000);
         
     } else {
         // Al volver a la vista original:
         if (fpControls) {
-        fpControls.dispose();
-        fpControls = null;
+          fpControls.dispose();
+          fpControls = null;
+          // Cerrar/eliminar el folder de First Person Controls al salir de FPV
+          gui.folders.forEach(folder => {
+            if (folder._title === "First Person Controls") {
+                folder.destroy();
+            }
+          });
         }
         
         // Utilizar el estado guardado para regresar a la vista original
