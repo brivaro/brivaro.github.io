@@ -77,6 +77,7 @@ export function iniWuhuIsland(scene, loader){
 // Función para crear el cubo y añadirle la interfaz de control
 function initCubeWithGUI() {
     // Crear la geometría y material del cubo
+    /*
     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
     const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
     cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -97,7 +98,7 @@ function initCubeWithGUI() {
       x: cube.position.x,
       y: cube.position.y,
       z: cube.position.z
-    };
+    };*/
     const cameraPos = {
       x: camera.position.x,
       y: camera.position.y,
@@ -106,7 +107,7 @@ function initCubeWithGUI() {
 
     // Crear la GUI y agregar los controles para la posición
     gui = new GUI();
-    const cubeFolder = gui.addFolder("Posición del Cubo (Relativa a la Isla)");
+    /*const cubeFolder = gui.addFolder("Posición del Cubo (Relativa a la Isla)");
     // Control para el eje X
     cubeFolder.add(cubePos, "x", -1000, 1000)
     .name("X")
@@ -145,9 +146,10 @@ function initCubeWithGUI() {
       cube.position.z = value;
     })
     .listen();   // Number Field
-
+    cubeFolder.open();
+    */
     // Folder para la posición de la cámara
-    const cameraFolder = gui.addFolder("Posición de la Cámara");
+    const cameraFolder = gui.addFolder("Camera Position");
     cameraFolder.add(cameraPos, "x").name("X").onChange((value) => {
       camera.position.x = value;
     }).listen();
@@ -157,8 +159,7 @@ function initCubeWithGUI() {
     cameraFolder.add(cameraPos, "z").name("Z").onChange((value) => {
       camera.position.z = value;
     }).listen();
-
-    cubeFolder.open();
+    
     // Mover la GUI a la esquina inferior
     const guiContainer = document.querySelector(".lil-gui");
     if (guiContainer) {
