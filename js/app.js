@@ -5,9 +5,10 @@ import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/render
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
 import { iniWuhuIsland, mobile, map_pointers } from "./importedAssets/importModels.js";
+import { showPointerDialog } from "./importedAssets/dialogs.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound, walkSound } from "./ui/music.js";
-import { iniMenu } from "../js/ui/menu.js";
+import { iniMenu, playerIcon, setFirstPerson, menuOverlay, menuIcon, setMenu } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
 import { FireworksManager } from '../js/lights/fireworks.js';
@@ -29,6 +30,17 @@ const playerView = document.getElementById("fpButton");
 const menuButton = document.getElementById('menuButton');
 let isNight = nightCheckbox.checked;
 let fireworksManager = null;
+
+// Biblioteca con las posiciones destino según el pointer clicado
+const pointerTargetPositions = {
+    about: new THREE.Vector3(27, 2, -10),
+    projects: new THREE.Vector3(-19, 5, -15),
+    experience: new THREE.Vector3(-12, 1, 8),
+    contact: new THREE.Vector3(26, 1, 27)
+  };
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let clickedPointer = null;
 
 // -------------------------
 // Acciones
@@ -56,6 +68,74 @@ function init() {
     nightCheckbox.addEventListener('change', updateSceneMode);
     iniMenu(menuButton, playerView);
     keybuttoms(); //para el movimiento en primera persona
+    window.addEventListener("mousemove", (event) => {
+        // Normalizar la posición del mouse (-1 a 1)
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+    window.addEventListener('click', () => {
+        // Detectar intersección con el raycaster
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(map_pointers, true);
+      
+        if (intersects.length > 0) {
+          let pointer = intersects[0].object;
+          // Recorrer la jerarquía hasta obtener el objeto raíz (que está en map_pointers)
+          while (pointer.parent && !map_pointers.includes(pointer)) {
+            pointer = pointer.parent;
+          }
+          clickedPointer = pointer;
+      
+          if (isFirstPerson) {
+            // Salir de modo primera persona
+            updatePlayerView(null, camera, cameraControls, renderer);
+            // Después de la transición de salida (1s), iniciar la transición al pointer
+            setTimeout(() => {
+              transitionToPointer(clickedPointer);
+              clickedPointer = null;
+            }, 1000);
+            
+            playerIcon.src = "icons/fp.png";
+            setFirstPerson(false);
+
+          } else {
+            transitionToPointer(clickedPointer);
+            clickedPointer = null;
+          }
+        }
+    });    
+    // Asignar listeners a los enlaces del menú
+    document.querySelectorAll('#menuOverlay ul li a').forEach(link => {
+        link.addEventListener('click', event => {
+        event.preventDefault(); // Evita la navegación por defecto
+        // Extraer el ID quitando el "#" del href
+        const pointerId = link.getAttribute('href').substring(1);
+        const pointer = map_pointers.find(pointer => pointer.userData.id === pointerId);
+        if (pointer) {
+            if (isFirstPerson) {
+                // Salir de modo primera persona
+                updatePlayerView(null, camera, cameraControls, renderer);
+                // Después de la transición de salida (1s), iniciar la transición al pointer
+                setTimeout(() => {
+                  transitionToPointer(pointer);
+                  clickedPointer = null;
+                }, 1000);
+    
+                playerIcon.src = "icons/fp.png";
+                setFirstPerson(false);
+
+            } else {
+                transitionToPointer(pointer);
+                clickedPointer = null;
+            }
+        } else {
+            console.warn("No se encontró pointer con id:", pointerId);
+        }
+        menuIcon.src = "icons/menu.png";
+        setMenu(false);
+        menuOverlay.classList.remove('open');
+        });
+    });
 }
 
 function loadScene() {
@@ -140,6 +220,42 @@ function update()
         const frequency = 2.0;  // controla la velocidad de oscilación
         const amplitude = 0.2;  // controla la amplitud del movimiento vertical
         pointer.position.y = pointer.userData.initialY + Math.sin(elapsedTime * frequency) * amplitude;
+    });
+
+    // ------------------------------
+    // 🎯 DETECTAR COLISIÓN CON EL MOUSE (RAYCASTER)
+    // ------------------------------
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(map_pointers, true); // true para que revise los children
+
+    let hoveredPointer = null;
+
+    if (intersects.length > 0) {
+        hoveredPointer = intersects[0].object;
+        while (hoveredPointer.parent && !map_pointers.includes(hoveredPointer)) {
+            hoveredPointer = hoveredPointer.parent; // Buscar el objeto raíz en map_pointers
+        }
+
+        if (!hoveredPointer.userData.isHovered) {
+            hoveredPointer.userData.isHovered = true; // Marcar como activo
+            new TWEEN.Tween(hoveredPointer.scale)
+                .to({ x: 5.5, y: 5.5, z: 5.5 }, 300) // Escala más grande en 300ms
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
+        }
+    }
+
+    // ------------------------------
+    // 🔽 RESTAURAR ESCALA SI NO ESTÁ HOVERED
+    // ------------------------------
+    map_pointers.forEach((pointer) => {
+        if (pointer !== hoveredPointer && pointer.userData.isHovered) {
+            pointer.userData.isHovered = false; // Desmarcar
+            new TWEEN.Tween(pointer.scale)
+                .to({ x: 2, y: 2, z: 2 }, 300) // Volver a la escala normal en 300ms
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
+        }
     });
 
     // Actualizar el shader underwater según la posición de la cámara
@@ -244,4 +360,32 @@ function updateSceneMode() {
 }
 
 
-
+function transitionToPointer(pointer) {
+    // Comprobamos que el pointer tenga un ID definido en userData
+    const pointerId = pointer.userData.id;
+    if (!pointerId) {
+      console.warn("El pointer no tiene definido 'userData.id'");
+      return;
+    }
+    
+    // Buscar la posición destino en la biblioteca
+    const targetPos = pointerTargetPositions[pointerId];
+    if (!targetPos) {
+      console.warn("No se encontró una posición destino para el pointer:", pointerId);
+      return;
+    }
+    
+    // Realizar la animación con Tween.js para mover la cámara a la posición destino
+    new TWEEN.Tween(camera.position)
+      .to({ x: targetPos.x, y: targetPos.y, z: targetPos.z }, 1000) // Duración de 1 segundo (1000ms)
+      .easing(TWEEN.Easing.Quadratic.Out)
+      .chain(
+        // Una vez terminada la animación de la cámara, encadenamos otro tween para restablecer el target de cameraControls
+        new TWEEN.Tween(cameraControls.target)
+          .to({ x: 0, y: 0, z: 0 }, 500) // Duración de 500ms (ajustable)
+          .easing(TWEEN.Easing.Quadratic.Out)
+      ).onComplete(()=> {
+        showPointerDialog(pointerId);
+        }
+      ).start();
+}

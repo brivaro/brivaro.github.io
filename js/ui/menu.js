@@ -1,8 +1,8 @@
 import { menuSound } from "./music.js";
 
-const menuIcon = document.getElementById('menuIcon');
-const playerIcon = document.getElementById('playerView');
-const menuOverlay = document.getElementById('menuOverlay');
+export const menuIcon = document.getElementById('menuIcon');
+export const playerIcon = document.getElementById('playerView');
+export const menuOverlay = document.getElementById('menuOverlay');
 let menuOpen = false;
 let fp = false;
 
@@ -35,3 +35,10 @@ export function iniMenu(menuButton, playerView){
     });
 }
 
+export function setFirstPerson(state) {
+    fp = state;
+}
+
+export function setMenu(state) {
+    menuOpen = state;
+}

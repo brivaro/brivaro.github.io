@@ -61,6 +61,7 @@ export const loadingManager = new THREE.LoadingManager(
 function dialog(){
   // Al finalizar la transición, mostrar un cuadro de diálogo
   const dialog = document.createElement('div');
+  dialog.id = 'intro';
   dialog.style.position = 'fixed';
   dialog.style.top = '50%';
   dialog.style.left = '50%';
@@ -71,8 +72,17 @@ function dialog(){
   dialog.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
   dialog.style.textAlign = 'center';
   dialog.style.zIndex = '1000';
-  // Usar 1/3 del ancho de la pantalla de forma responsiva
-  dialog.style.width = (window.innerWidth / 3) + 'px';
+  dialog.style.fontFamily = 'Arial, sans-serif';
+  dialog.style.fontSize = '16px';
+  // Usar 2/3 del ancho de la pantalla de forma responsiva
+  dialog.style.width = (window.innerWidth / 2) + 'px';
+
+  window.addEventListener("resize", () => {
+    document.getElementById("intro");
+    if (dialog) {
+      dialog.style.width = (window.innerWidth / 2.5) + "px";
+    }
+  });
 
   // Crear elementos internos del diálogo
   const title = document.createElement('h2');
@@ -99,6 +109,13 @@ function dialog(){
 
   document.body.appendChild(dialog);
 
+  // Aplicar fade in.
+  dialog.style.transition = "opacity 0.5s ease";
+  dialog.style.opacity = "0";
+  requestAnimationFrame(() => {
+    dialog.style.opacity = "1";
+  });
+
   // Variable para el control del estado del diálogo
   let dialogState = 0;
 
@@ -106,11 +123,16 @@ function dialog(){
       if (dialogState === 0) {
           // Actualizar el contenido del cuadro de diálogo
           title.textContent = "🗺️ Explore the Island";
-            message.innerHTML = `Adventure awaits! 🌊 Take in the sights from a <strong>panoramic view</strong> or dive into <strong>first-person</strong> mode with <img src="/icons/fp.png" alt="First Person Icon" width="20">. Want a shortcut? The <strong>menu</strong> <img src="/icons/menu.png" alt="Menu Icon" width="15"> is your best friend! 😉`;
-            dialogState = 1;
+          message.innerHTML = `Adventure awaits! 🌊 Take in the sights from a <strong>panoramic view</strong> or dive into <strong>first-person</strong> mode with <img src="/icons/fp.png" alt="First Person Icon" width="20">. <br>Want a shortcut? The <strong>menu</strong> <img src="/icons/menu.png" alt="Menu Icon" width="15"> is your best friend! 😉`;
+          dialogState = 1;
+          continueButton.textContent = "LET'S GO!";
       } else {
-          // Eliminar el cuadro de diálogo
-          dialog.remove();
+          // Fade out antes de remover.
+          dialog.style.transition = "opacity 0.5s ease";
+          dialog.style.opacity = "0";
+          dialog.addEventListener("transitionend", () => {
+            dialog.remove();
+          }, { once: true });
       }
   });
 }

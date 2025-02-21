@@ -5,7 +5,7 @@ export let mobile, wuhu_island, gui;
 export let map_pointers = [];
 let cube;
 
-const map_pointer_lib = {
+export const map_pointer_lib = {
   about: new THREE.Vector3(48.78, 2.9, -18.91),
   experience: new THREE.Vector3(-20.27, 2.8, 11.5),
   projects: new THREE.Vector3(-33, 9.7, -30), 
@@ -33,6 +33,7 @@ export function iniWuhuIsland(scene, loader){
       loader.load('models/map_pointer/places_of_interest.gltf', function (gltf) {
         const pointerModel = gltf.scene;
         // Asignamos la posición usando copy para clonar el vector
+        pointerModel.userData.id = key;
         pointerModel.position.copy(map_pointer_lib[key]);
         pointerModel.scale.set(2, 2, 2);
         // Guardar la posición inicial en Y para la oscilación vertical
