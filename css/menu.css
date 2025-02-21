@@ -66,13 +66,13 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);  /* Blanco semi-transparente */
   transition: right 0.3s ease-in-out;  /* Animación para el deslizamiento */
-  z-index: 9997;
   padding: 2rem;
   padding-right: 1rem;
   display: flex;
   flex-direction: column;
   font-family: "Monomaniac One", serif;
   box-sizing: border-box;  /* Incluye el padding dentro del ancho definido */
+  z-index: 9997;
 }
 
 /* Cuando el menú se abre, se le añade la clase "open" para desplazarlo a la vista */
@@ -89,11 +89,12 @@
   text-align: left;  /* Asegura alineación izquierda */
   font-size: 2rem;  /* Aumenta el tamaño de la letra */
   line-height: 4rem;  /* Ajusta el espaciado entre líneas */
+  justify-content: space-evenly; /* Distribuye de forma equitativa según el alto */
 }
 
 /* Ajustar espaciado de los elementos del menú */
 #menuOverlay ul li {
-  margin-bottom: 1rem; /* Espaciado entre opciones */
+  padding: 0.5rem 0;
 }
 
 /* Mejorar la apariencia de los enlaces */
@@ -119,17 +120,14 @@
   }
   
   #menuOverlay ul {
-    padding-top: 3em;   /* Menos espacio superior */
-    padding-right: 1rem; /* Mantiene un margen a la derecha */
     font-size: 1.5rem;  /* Reducir el tamaño de la fuente */
-    line-height: 2.5rem;/* Reducir el interlineado */
   }
   
   #menuOverlay ul li {
-    margin-bottom: 0.8rem; /* Reducir el espaciado entre elementos */
+    padding: 0.4rem 0;
   }
   
   #menuOverlay ul li a {
-    padding: 0.4rem 0.8rem; /* Ajuste de padding en los enlaces */
+    padding: 0.4rem 0.8rem;
   }
 }
