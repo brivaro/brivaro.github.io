@@ -140,7 +140,7 @@ function update()
         const frequency = 2.0;  // controla la velocidad de oscilación
         const amplitude = 0.2;  // controla la amplitud del movimiento vertical
         pointer.position.y = pointer.userData.initialY + Math.sin(elapsedTime * frequency) * amplitude;
-      });
+    });
 
     // Actualizar el shader underwater según la posición de la cámara
     let underwaterFactor = 0.0; // si camara esta arriba
@@ -232,7 +232,7 @@ function updateSceneMode() {
       scene.remove(scene.getObjectByName('ln'));
       scene.remove(scene.getObjectByName('ln1'));
       iniLights(scene);
-      // Si pasa a día, eliminamos los fuegos (si lo deseas)
+      // Si pasa a día, eliminamos los fuegos
       if (fireworksManager) {
         fireworksManager.fireworks.forEach(fw => fw.dispose());
         fireworksManager = null;
