@@ -18,6 +18,8 @@ export function iniMenu(menuButton, playerView){
             menuIcon.src = "icons/menu.png"; // Icono para abrir el menú
         }
         menuSound.play();
+        //document.activeElement.blur();
+        //menuButton.blur();
     });
 
     playerView.addEventListener('click', () => {
@@ -29,6 +31,7 @@ export function iniMenu(menuButton, playerView){
             playerIcon.src = "icons/fp.png"; // Icono para abrir el menú
         }
         menuSound.play();
+        playerView.blur();
     });
 }
 

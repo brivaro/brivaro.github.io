@@ -106,8 +106,7 @@ function dialog(){
       if (dialogState === 0) {
           // Actualizar el contenido del cuadro de diálogo
           title.textContent = "🗺️ Explore the Island";
-            message.innerHTML = `Adventure awaits! 🌊 Take in the sights from a <strong>panoramic view</strong> or dive into <strong>first-person</strong> mode with <img src="/icons/fp.png" alt="First Person Icon" width="20">.<br>
-            Want a shortcut? The <strong>menu</strong> <img src="/icons/menu.png" alt="Menu Icon" width="15"> is your best friend! 😉`;
+            message.innerHTML = `Adventure awaits! 🌊 Take in the sights from a <strong>panoramic view</strong> or dive into <strong>first-person</strong> mode with <img src="/icons/fp.png" alt="First Person Icon" width="20">. Want a shortcut? The <strong>menu</strong> <img src="/icons/menu.png" alt="Menu Icon" width="15"> is your best friend! 😉`;
             dialogState = 1;
       } else {
           // Eliminar el cuadro de diálogo
