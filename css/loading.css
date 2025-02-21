@@ -27,7 +27,7 @@
 
 /* Tipografía responsiva para pantallas grandes */
 .loadingContent h1 {
-  font-size: calc(3rem + 2vw);
+  font-size: calc(4rem + 2vw);
 }
 .loadingContent h2 {
   font-size: calc(2rem + 1.5vw);
@@ -61,14 +61,14 @@
   height: 3em;
   border-radius: 30em;
   font-size: 2vh;
-  font-family: inherit;
+  font-family: "Monomaniac One", serif;
   border: none;
   position: relative;
   overflow: hidden;
   z-index: 1;
   margin-top: 3em;
-  font-family: "Monomaniac One", serif;
   cursor: pointer;
+  animation: pulsate 2s infinite; /* Aplica la animación de pulsación */
 }
  
 #start::before {
@@ -89,6 +89,17 @@
   width: 10em;
 }
 
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* Aumenta el tamaño un 10% */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 /* Ajustes para pantallas pequeñas (móviles) */

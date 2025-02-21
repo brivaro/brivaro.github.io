@@ -4,7 +4,7 @@ import { iniCamera, camera, cameraControls } from "../js/camera/camera.js";
 import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/rendererScene.js";
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
-import { iniWuhuIsland, mobile } from "./importedAssets/importModels.js";
+import { iniWuhuIsland, mobile, map_pointers } from "./importedAssets/importModels.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound } from "./ui/music.js";
 import { iniMenu } from "../js/ui/menu.js";
@@ -77,11 +77,19 @@ function loadScene() {
     //scene.add(new THREE.AxesHelper(3));
 }
 
-function updateAspectRatio()
+function updateAspectRatio() 
 {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    if (composer) {
+        composer.setSize(width, height);
+    }
 }
 
 function update()
@@ -129,6 +137,14 @@ function update()
         // Sumamos el desplazamiento a la altura base guardada
         mobile.position.y = mobile.userData.baseY + waveOffset;
     }
+
+    map_pointers.forEach((pointer) => {
+        pointer.rotation.y += 0.7 * delta;
+
+        const frequency = 2.0;  // controla la velocidad de oscilación
+        const amplitude = 0.2;  // controla la amplitud del movimiento vertical
+        pointer.position.y = pointer.userData.initialY + Math.sin(elapsedTime * frequency) * amplitude;
+      });
 
     // Actualizar el shader underwater según la posición de la cámara
     let underwaterFactor = 0.0; // si camara esta arriba
