@@ -99,11 +99,6 @@ function update()
     const elapsedTime = clock.getElapsedTime();
     let waveOffset = 0.0;
 
-    // Cambios para actualizar la camara segun mvto del raton
-    if (!isFirstPerson) {
-        cameraControls.update();
-    }
-
     if (isFirstPerson) {
         // Actualizamos movimiento horizontal
         updatePlayer(delta, camera);
