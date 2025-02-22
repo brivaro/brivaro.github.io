@@ -44,7 +44,7 @@ export function updatePlayerView(event, camera, cameraControls, renderer){
         // Tras finalizar la transición, inicializar FirstPersonControls para el control de la mirada
         setTimeout(() => {
         fpControls = new FirstPersonControls(camera, renderer.domElement);
-        fpControls.lookSpeed = 0.3;
+        fpControls.lookSpeed = 0.2;
         fpControls.movementSpeed = 0; // Desactivamos el movimiento interno
         fpControls.noFly = true;
         fpControls.lookVertical = true;
