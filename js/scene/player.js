@@ -56,6 +56,9 @@ export function updatePlayer(delta, camera) {
     if (keysPressed['KeyS']) moveZ += 1;
     if (keysPressed['KeyA']) moveX -= 1;
     if (keysPressed['KeyD']) moveX += 1;
+    if (!walkSound.isPlaying) {
+      walkSound.play();
+    }
     
     const direction = new THREE.Vector3(moveX, 0, moveZ);
     if (direction.lengthSq() > 0) {
@@ -83,7 +86,6 @@ export function updatePlayer(delta, camera) {
         walkSound.pause();
       } else {
         // Si no hay colisión, se actualiza la posición normalmente.
-        walkSound.play();
         camera.position.copy(proposedPosition);
       }
     }
