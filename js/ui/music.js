@@ -3,6 +3,7 @@ export const listener = new THREE.AudioListener();
 export const oceanSound = new THREE.Audio(listener);
 export const diveSound = new THREE.Audio(listener);
 export const fireworkSound = new THREE.Audio(listener);
+export const melodySound = new THREE.Audio(listener);
 export const dayNightSound = new THREE.Audio(listener);
 export const menuSound = new THREE.Audio(listener);
 export const walkSound = new THREE.Audio(listener);
@@ -17,6 +18,13 @@ audioLoader.load('../sounds/day.mp3', function(buffer) {
     dayNightSound.setBuffer(buffer);
     dayNightSound.setLoop(false);
     dayNightSound.setVolume(0.7);
+});
+
+// Cargar sonido melodia
+audioLoader.load('../sounds/melody.mp3', function(buffer) {
+    melodySound.setBuffer(buffer);
+    melodySound.setLoop(true);
+    melodySound.setVolume(0.2);
 });
 
 // Cargar sonido walking
@@ -69,6 +77,7 @@ muteButton.addEventListener('click', () => {
     menuSound.play();
 
     // Ajustar volumen
+    melodySound.setVolume(isMuted ? 0 : 0.2);
     oceanSound.setVolume(isMuted ? 0 : 0.5);
     diveSound.setVolume(isMuted ? 0 : 0.5);
 
@@ -83,6 +92,7 @@ export function startAudio() {
             console.log('AudioContext reanudado.');
         });
     }
+    melodySound.play();
     oceanSound.play();
     diveSound.play();
     fireworkSound.play();

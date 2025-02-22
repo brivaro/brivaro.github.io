@@ -7,7 +7,7 @@ import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
 import { iniWuhuIsland, mobile, map_pointers } from "./importedAssets/importModels.js";
 import { showPointerDialog } from "./importedAssets/dialogs.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
-import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound, walkSound } from "./ui/music.js";
+import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound, walkSound, melodySound } from "./ui/music.js";
 import { iniMenu, playerIcon, setFirstPerson, menuOverlay, menuIcon, setMenu } from "../js/ui/menu.js";
 import { EXRLoader } from "../lib/EXRLoader.js";
 import { loadingManager } from "../js/loadingPage/loader.js";
@@ -28,6 +28,7 @@ const rgbeLoader = new RGBELoader(loadingManager);
 const nightCheckbox = document.getElementById("checkbox");
 const playerView = document.getElementById("fpButton");
 const menuButton = document.getElementById('menuButton');
+const helpButton = document.getElementById("helpButton");
 let isNight = nightCheckbox.checked;
 let fireworksManager = null;
 
@@ -66,6 +67,7 @@ function init() {
     // 🌍 Actualiza el entorno 🌍
     playerView.addEventListener("click", (event) => updatePlayerView(event, camera, cameraControls, renderer));
     nightCheckbox.addEventListener('change', updateSceneMode);
+    helpButton.addEventListener("click", () => showPointerDialog('help'));
     iniMenu(menuButton, playerView);
     keybuttoms(); //para el movimiento en primera persona
     window.addEventListener("mousemove", (event) => {
@@ -270,7 +272,6 @@ function update()
     if (!isMuted) {
         const volumeAboveWater = Math.max(0, 1 - underwaterFactor);
         const volumeUnderwater = underwaterFactor;
-
         oceanSound.setVolume(volumeAboveWater * 0.2);
         diveSound.setVolume(volumeUnderwater * 0.5);
         if (isNight){
@@ -278,6 +279,7 @@ function update()
             fireworkSound.setVolume(volumeAboveWater * 0.3);
         }
     } else {
+        melodySound.setVolume(0);
         oceanSound.setVolume(0);
         diveSound.setVolume(0);
         fireworkSound.setVolume(0);

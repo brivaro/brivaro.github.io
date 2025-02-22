@@ -1,0 +1,122 @@
+<h2>About</h2>
+
+<h2>Who am I?</h2>  
+<p>A technology and science enthusiast who loves tackling challenges with his team and turning ideas into reality. With a background in Computer Engineering, I specialize in Data Engineering, Big Data, AI, Machine Learning, Networking, Security, and DevOps. Whether it's developing innovative solutions, optimizing systems, or exploring the universe of technology, I'm all about making a difference! 🚀</p>  
+
+<h2>What do I do?</h2>  
+<p>From software development and automation to cloud computing and system optimization, I create efficient and scalable solutions. I also share my passion for tech and science through my YouTube channel, where I break down mind-blowing topics in an engaging way. 💡</p>
+
+<h2>Beyond the screen?</h2>  
+<p>When I'm not coding, I'm on the tennis court (no broken rackets yet! 🎾) or leveling up my English at the Official School of Languages 💬</p>
+
+
+
+
+<h2>Projects</h2>
+
+<details>
+  <summary>🔍 Predictive Modeling</summary>
+  <p>Developed and trained Machine Learning models for time series forecasting, optimizing sales planning for consumables at HP.</p>
+</details>
+
+<details>
+  <summary>📊 Application Development</summary>
+  <p>Built a Python application integrating predictive models to enhance sales projections and decision-making at HP.</p>
+</details>
+
+<details>
+  <summary>🎓 Internal Training at HP</summary>
+  <p>Created video tutorials to train employees in analytical tools like Power BI and ThoughtSpot, boosting autonomy in data analysis.</p>
+</details>
+
+<details>
+  <summary>🛠️ Kubernetes Cluster with Ansible</summary>
+  <p>Automated the configuration and deployment of a Kubernetes cluster on AlmaLinux 9 using Ansible, with Calico, MetalLB, and Metrics Server.</p>
+</details>
+
+<details>
+  <summary>🌦️ PlouTerreta - Weather App</summary>
+  <p>Developed a weather application for the Comunidad Valenciana, providing real-time forecasts, alerts, and climatological data visualization.</p>
+</details>
+
+<details>
+  <summary>💬 Collaborative Chat CLI with NATS</summary>
+  <p>Created a simple command-line chat application in Go, using NATS for real-time messaging.</p>
+</details>
+
+<details>
+  <summary>🚀 FaaS with Go</summary>
+  <p>Implemented a Functions-as-a-Service (FaaS) platform using Go, leveraging Docker containers, NATS for messaging, and APISIX for reverse proxy management and orchestrated with Docker Compose.</p>
+</details>
+
+<details>
+  <summary>📝 To-Do App with Go & Docker</summary>
+  <p>Developed a web-based to-do list application using Go (Gin framework), containerized with Docker and orchestrated with Docker Compose.</p>
+</details>
+
+<details>
+  <summary>🖥️ C Compiler</summary>
+  <p>Designed and implemented a compiler for a simplified version of the C programming language.</p>
+</details>
+
+<details>
+  <summary>🗺️ Kartomapp - Navigation Study App</summary>
+  <p>Developed an educational tool for ship navigation students, featuring interactive maps and test-based learning.</p>
+</details>
+
+<details>
+  <summary>🧬 Genomic Data Analysis</summary>
+  <p>Analyzed genomic datasets at VRAIN using Apache NiFi to streamline data processing and insights extraction of ClinVar.</p>
+</details>
+
+<details>
+  <summary>🎥 Science Communication on YouTube</summary>
+  <p>Running a science and tech YouTube channel with 17K+ subscribers, exploring AI, space exploration, and cutting-edge innovations.</p>
+</details>
+
+
+
+
+<h2>Experience</h2>
+
+<details>
+  <summary>💼 HP | Big Data & AI Engineer | Valencia, España</summary>
+  <p><strong>Jan. 2024 – Jul. 2024</strong></p>
+  <ul>
+    <li>Implemented and trained Machine Learning models for time series forecasting, optimizing sales planning.</li>
+    <li>Developed a Python application to integrate predictive models, enhancing decision-making efficiency.</li>
+    <li>Conducted data engineering and analysis using Python, Databricks, and SQL, improving visualizations in Power BI.</li>
+    <li>Created video tutorials to train employees on analytics tools like Power BI and Thoughtspot.</li>
+    <li>Fine-tuned Large Language Models (LLM) using H2O Studio for internal tasks.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>💼 NTT DATA | Artificial Intelligence Engineer | Valencia, España</summary>
+  <p><strong>Sep. 2023 – Dec. 2023</strong></p>
+  <ul>
+    <li>Trained neural networks to classify Jira tickets, optimizing response times.</li>
+    <li>Automated repetitive tasks with Azure AI Services (OCR, Whisper, OpenAI).</li>
+    <li>Built applications with Microsoft PowerPlatform to improve internal processes.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>💼 VRAIN | Researcher | Valencia, España</summary>
+  <p><strong>Apr. 2023 – Jul. 2023</strong></p>
+  <ul>
+    <li>Integrated ClinVar genomic data for research analysis.</li>
+    <li>Automated genetic data extraction with Apache NiFi and JOLT.</li>
+  </ul>
+</details>
+
+
+
+<h2>Contact</h2>
+<ul>
+  <li>📧 Email: <a href="mailto:brian.1613.bv@gmail.com">brian.1613.bv@gmail.com</a></li>
+  <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/brian-valiente-rodenas/" target="_blank">linkedin.com/in/brian-valiente-rodenas/</a></li>
+  <li>🐙 GitHub: <a href="https://github.com/brivaro" target="_blank">github.com/brivaro</a></li>
+  <li>📄 Download CV: <a href="ruta/a/tu-cv.pdf" download>Download CV (PDF)</a></li>
+  <li>🎥 YouTube Channel: <a href="https://www.youtube.com/c/tu-canal" target="_blank">Mr Ryan</a></li>
+</ul>

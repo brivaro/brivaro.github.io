@@ -106,6 +106,16 @@ export const dialogLibrary = {
         <li>📰 Download CV: <a href="cv/CV BRIAN es.pdf" download>Here</a></li>
         <li>🎥 YouTube Channel: <a href="https://www.youtube.com/@mrryanoficial" target="_blank">Mr Ryan</a></li>
     </ul>
+    `,
+    help:`
+    <h2>🎮 First-Person Movement</h2>
+      <p>
+        Use 
+        <img src="icons/keys.jpg" alt="WASD keys" width="80" style="vertical-align: middle;"> 
+        to move 🏃 and 
+        <img src="icons/space.jpg" alt="Space key" width="80" style="vertical-align: middle;"> 
+        to jump ⬆️.
+      </p>
     `
 };
 
