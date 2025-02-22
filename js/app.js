@@ -293,7 +293,7 @@ function update()
 
 function render() {
     requestAnimationFrame(render);
-    TWEEN.update(); // Actualizar las animaciones tween
+    TWEEN.update(); // actualizar animaciones
     update();
     //renderer.render(scene, camera);
     composer.render() // con el postprocesado
