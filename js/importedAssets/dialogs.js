@@ -157,7 +157,7 @@ export function showPointerDialog(pointerId) {
   dialog.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
   dialog.style.textAlign = 'justify';
   dialog.style.zIndex = '1000';
-  dialog.style.width = (window.innerWidth / 2.5) + 'px';
+  dialog.style.width = (window.innerWidth / 1.5) + 'px';
   dialog.style.maxHeight = '80vh';
   dialog.style.overflowY = 'auto';
   dialog.style.fontFamily = 'Arial, sans-serif';

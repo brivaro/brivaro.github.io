@@ -167,7 +167,7 @@ function initCubeWithGUI() {
     guiContainer.style.bottom = "10px";
     guiContainer.style.right = "10px";
     guiContainer.style.top = "auto";
-    guiContainer.style.width = "150px";
+    guiContainer.style.width = "200px";
     }
 
     gui.close();

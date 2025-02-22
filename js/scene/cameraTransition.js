@@ -48,7 +48,7 @@ export function updatePlayerView(event, camera, cameraControls, renderer){
         fpControls.movementSpeed = 0; // Desactivamos el movimiento interno
         fpControls.noFly = true;
         fpControls.lookVertical = true;
-        const controlsFolder = gui.addFolder("First Person Controls");
+        const controlsFolder = gui.addFolder("First Person");
         controlsFolder.add(fpControls, "lookSpeed", 0.1, 1).name("Look Speed").step(0.05);
         }, 1000);
         
@@ -59,7 +59,7 @@ export function updatePlayerView(event, camera, cameraControls, renderer){
           fpControls = null;
           // Cerrar/eliminar el folder de First Person Controls al salir de FPV
           gui.folders.forEach(folder => {
-            if (folder._title === "First Person Controls") {
+            if (folder._title === "First Person") {
                 folder.destroy();
             }
           });
