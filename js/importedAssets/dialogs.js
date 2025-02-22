@@ -30,7 +30,7 @@ export const dialogLibrary = {
         <p>Created video tutorials to train employees in analytical tools like Power BI and ThoughtSpot, boosting autonomy in data analysis.</p>
       </details>
       <details>
-        <summary>🛠️ <strong>Kubernetes Cluster with Ansible</strong></summary>
+        <summary>🛠️ <strong>Kubernetes Cluster</strong></summary>
         <p>Automated the configuration and deployment of a Kubernetes cluster on AlmaLinux 9 using Ansible, with Calico, MetalLB, and Metrics Server.</p>
       </details>
       <details>
@@ -38,7 +38,7 @@ export const dialogLibrary = {
         <p>Developed a weather application for the Comunidad Valenciana, providing real-time forecasts, alerts, and climatological data visualization.</p>
       </details>
       <details>
-        <summary>💬 <strong>Collaborative Chat CLI with NATS</strong></summary>
+        <summary>💬 <strong>Collaborative Chat CLI</strong></summary>
         <p>Created a simple command-line chat application in Go, using NATS for real-time messaging.</p>
       </details>
       <details>
@@ -46,7 +46,7 @@ export const dialogLibrary = {
         <p>Implemented a Functions-as-a-Service (FaaS) platform using Go, leveraging Docker containers, NATS for messaging, and APISIX for reverse proxy management.</p>
       </details>
       <details>
-        <summary>📝 <strong>To-Do App with Go & Docker</strong></summary>
+        <summary>📝 <strong>To-Do App - Go & Docker</strong></summary>
         <p>Developed a web-based to-do list application using Go (Gin framework), containerized with Docker and orchestrated with Docker Compose.</p>
       </details>
       <details>
@@ -54,7 +54,7 @@ export const dialogLibrary = {
         <p>Designed and implemented a compiler for a simplified version of the C programming language.</p>
       </details>
       <details>
-        <summary>🗺️ <strong>Kartomapp - Navigation Study App</strong></summary>
+        <summary>🗺️ <strong>Kartomapp Navigation App</strong></summary>
         <p>Developed an educational tool for ship navigation students, featuring interactive maps and test-based learning.</p>
       </details>
       <details>
@@ -100,11 +100,11 @@ export const dialogLibrary = {
     contact: `
     <h2>Contact</h2>
     <ul style="margin: 0; padding-left: 5px; list-style-position: inside;">
-        <li>📧 Email: <a href="mailto:brian.1613.bv@gmail.com">brian.1613.bv@gmail.com</a></li>
-        <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/brian-valiente-rodenas/" target="_blank">brian-valiente-rodenas</a></li>
+        <li>📧 Email: <a href="mailto:brian.1613.bv@gmail.com">Mailbox</a></li>
+        <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/brian-valiente-rodenas/" target="_blank">My profile</a></li>
         <li>🐙 GitHub: <a href="https://github.com/brivaro" target="_blank">brivaro</a></li>
         <li>📰 Download CV: <a href="cv/CV BRIAN es.pdf" download>Here</a></li>
-        <li>🎥 YouTube Channel: <a href="https://www.youtube.com/@mrryanoficial" target="_blank">Mr Ryan</a></li>
+        <li>🎥 YouTube: <a href="https://www.youtube.com/@mrryanoficial" target="_blank">@mrryanoficial</a></li>
     </ul>
     `,
     help:`
