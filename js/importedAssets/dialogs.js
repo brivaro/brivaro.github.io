@@ -108,14 +108,22 @@ export const dialogLibrary = {
     </ul>
     `,
     help:`
-    <h2>🎮 First-Person Movement</h2>
+    <h2>Help</h2>
+    <details>
+      <summary>🖼️ <strong>Panoramic View</strong></summary>
       <p>
-        Use 
-        <img src="icons/keys.jpg" alt="WASD keys" width="80" style="vertical-align: middle;"> 
-        to move 🏃 and 
-        <img src="icons/space.jpg" alt="Space key" width="80" style="vertical-align: middle;"> 
-        to jump ⬆️.
+      Use <img src="icons/mouse.png" alt="Mouse controls" width="80" style="vertical-align: middle;"> 
+      to explore the scene: click (either right or left) and move the mouse to look around, or scroll to zoom in and out.
       </p>
+    </details>
+    <details>
+      <summary>🎮 <strong>First-Person Movement</strong></summary>
+      <p>
+      Use <img src="icons/keys.jpg" alt="WASD keys" width="80" style="vertical-align: middle;"> 
+      to move 🏃 and <img src="icons/space.jpg" alt="Space key" width="80" style="vertical-align: middle;"> 
+      to jump ⬆️.
+      </p>
+    </details>
     `
 };
 
