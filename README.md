@@ -123,6 +123,28 @@ Si deseas colaborar o conocer más sobre mis proyectos, no dudes en contactarme:
 
 ## Alcance de este proyecto 🧩
 
+Bienvenidos a mi isla.
+Aquí, entre el mar y el cielo, encontraréis mi portafolio profesional en un entorno interactivo diseñado con Three.js. La idea es simple: explorar, descubrir y sumergirse en mi trabajo de una manera completamente nueva.
+
+Para moverte tienes dos opciones: el modo panorámico con OrbitControls, perfecto para observar la isla desde cualquier ángulo, o el modo en primera persona con FirstPersonControls, para una experiencia más inmersiva en la que puedes recorrer cada rincón libremente. Tú decides cómo explorar gracias a este botón.
+
+Cada detalle ha sido cuidado. La isla cuenta con un sistema de sombras realistas que se proyectan en los edificios y el terreno, dándole un aspecto más auténtico y envolvente.
+
+Pero si prefieres ir directo al grano, el menú interactivo te permite viajar con animaciones fluidas, gracias a Tween, a las secciones clave de la isla: About, Projects, Experience y Contact. Desde aquí, podrás conocer más sobre mi trayectoria, mis proyectos más destacados y la forma en la que trabajo.
+
+El mapa cuenta con varias balizas rojas que marcan estos puntos de interés. Utilizando raycasting, puedes seleccionar cada una de ellas para transportarte directamente al lugar señalado. Además, cuando pases el ratón sobre una baliza, esta se hará más grande para indicar su interactividad.
+
+La isla cuenta con agua cristalina generada con shaders y ondas sinusoidales, proporcionando un efecto realista de en su movimiento y textura.
+Otra característica especial también es el postprocesado con EffectComposer, ShaderPass y RenderPass. Si decides aventurarte al agua, verás cómo la lente se moja y se ondula la imagen, añadiendo un toque extra de realismo a la experiencia.
+
+Además, puedes cambiar la hora del día con este boton. De día, la isla se ilumina con luz natural, además de varias direccionales con tonos calidos para dar esa sensacion isleña, mientras que de noche, la atmósfera cambia y aparecen fuegos artificiales con SpotLight y un sistema de partículas para darle un toque espectacular, todo ello bajo la luz de la luna.
+
+Y claro, la música no podía faltar. Cada momento tiene su propio ambiente sonoro para hacer la exploración aún más especial.
+
+Este portafolio no es solo una web, es una experiencia interactiva donde tecnología y creatividad se unen. Todo ha sido desarrollado con Three.js, aprovechando sus capacidades para gráficos 3D, efectos visuales y optimización en tiempo real. Destacar que las licencias de todos los modelos 3d usados han sido referenciadas.
+
+Explora, descubre y te reto a encontrarme. Demo explicación online: https://www.youtube.com/watch?v=epTsSGTRUi8
+
 Este proyecto tiene exclusivamente fines docentes. El proyecto incluye material extraído del proyecto público [Three.js](http://threjs.org) *r140*, bibliotecas de utilidad del texto *"WebGL Programming Guide" de  Kouichi Matsuda y Rodger Lea* y código propio de *<bvalrod@etsinf.upv.es>*.  
 
 Para más información consultar la [wiki](https://github.com/RobVivo/RobVivo.github.io/wiki/INSTRUCCIONES-B%C3%81SICAS).
