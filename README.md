@@ -123,28 +123,28 @@ Si deseas colaborar o conocer más sobre mis proyectos, no dudes en contactarme:
 
 ## Alcance de este proyecto 🧩
 
-🌴 ¡Bienvenidos a mi isla! 🏝️✨
+### 🌴 ¡Bienvenidos a mi isla! 🏝️✨  
 
-Aquí encontrarás mi portafolio profesional en un entorno interactivo creado con Three.js. 🚀🌊
+Aquí encontrarás mi **portafolio profesional** en un entorno interactivo creado con **Three.js**. 🚀🌊  
 
-🔹 Modo de exploración 👀
-📌 Panorámico (OrbitControls): Para observar desde cualquier ángulo.
-📌 Primera persona (FirstPersonControls): Para recorrer la isla libremente.
+#### 🔹 Modo de exploración 👀  
+- 📌 **Panorámico (OrbitControls)**: Para observar desde cualquier ángulo.  
+- 📌 **Primera persona (FirstPersonControls)**: Para recorrer la isla libremente.  
 
-🔹 Características clave 🎨
-🌞 Sombras realistas en edificios y terreno.
-🗺️ Menú interactivo con animaciones fluidas (Tween).
-📍 Balizas interactivas que puedes seleccionar con Raycasting.
-💦 Agua dinámica con shaders y ondas sinusoidales.
-🎇 Cambio de día y noche con efectos de luz y fuegos artificiales.
-🎼 Ambiente sonoro para una experiencia inmersiva.
+#### 🔹 Características clave 🎨  
+- 🌞 **Sombras realistas** en edificios y terreno.  
+- 🗺️ **Menú interactivo** con animaciones fluidas (Tween).  
+- 📍 **Balizas interactivas** que puedes seleccionar con Raycasting.  
+- 💦 **Agua dinámica** con shaders y ondas sinusoidales.  
+- 🎇 **Cambio de día y noche** con efectos de luz y fuegos artificiales.  
+- 🎼 **Ambiente sonoro** para una experiencia inmersiva.  
 
-💡 Tecnología usada 🖥️
-🚀 Three.js para gráficos 3D y optimización.
-🔷 EffectComposer, ShaderPass y RenderPass para postprocesado.
+#### 💡 Tecnología usada 🖥️  
+- 🚀 **Three.js** para gráficos 3D y optimización.  
+- 🔷 **EffectComposer, ShaderPass y RenderPass** para postprocesado.  
 
-👉 Explora, descubre y te reto a encontrarme 🔍🤔
-🎥 Demo online: [YouTube](https://www.youtube.com/watch?v=epTsSGTRUi8)
+👉 **Explora, descubre y te reto a encontrarme** 🔍🤔  
+🎥 **Demo online**: [YouTube](https://www.youtube.com/watch?v=epTsSGTRUi8)
 
 Este proyecto tiene exclusivamente fines docentes. El proyecto incluye material extraído del proyecto público [Three.js](http://threjs.org) *r140*, bibliotecas de utilidad del texto *"WebGL Programming Guide" de  Kouichi Matsuda y Rodger Lea* y código propio de *<bvalrod@etsinf.upv.es>*.  
 
