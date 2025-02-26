@@ -4,7 +4,7 @@ import { iniCamera, camera, cameraControls } from "../js/camera/camera.js";
 import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/rendererScene.js";
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
-import { iniWuhuIsland, mobile, map_pointers } from "./importedAssets/importModels.js";
+import { iniWuhuIsland, mobile, map_pointers, miiMixer } from "./importedAssets/importModels.js";
 import { showPointerDialog } from "./importedAssets/dialogs.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound, walkSound, melodySound } from "./ui/music.js";
@@ -16,6 +16,7 @@ import { RGBELoader } from "../../lib/RGBELoader.js";
 import { TWEEN } from "../lib/tween.module.min.js";
 import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
 import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
+import * as SkeletonUtils from "../lib/SkeletonUtils.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 
@@ -180,6 +181,10 @@ function update()
     const delta = clock.getDelta();
     const elapsedTime = clock.getElapsedTime();
     let waveOffset = 0.0;
+
+    if (miiMixer) {
+        miiMixer.update(delta);
+    }
 
     if (isFirstPerson) {
         // Actualizamos movimiento horizontal

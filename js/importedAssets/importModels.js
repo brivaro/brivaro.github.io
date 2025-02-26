@@ -4,6 +4,7 @@ import { camera } from "../camera/camera.js";
 export let mobile, wuhu_island, gui;
 export let map_pointers = [];
 let cube;
+export let miiModel, miiMixer;
 
 export const map_pointer_lib = {
   about: new THREE.Vector3(48.78, 2.9, -18.91),
@@ -71,13 +72,45 @@ export function iniWuhuIsland(scene, loader){
 
       wuhu_island.add(mobile);
     });
+
+    loader.load('models/mii_animation.glb', function (gltf) {
+      // El modelo 3D
+      miiModel = gltf.scene;
+      miiModel.position.set(80, 0.65, 35); //(84, 0.6, 70); 
+      miiModel.scale.set(0.008, 0.008, 0.008);
+
+      miiModel.traverse((child) => {
+        if (child.isMesh && child.geometry) {
+          child.castShadow = true;
+          
+          // Recalcula las normales de la geometría
+          child.geometry.computeVertexNormals();
+      
+          // Prueba forzar doble cara para verificar si desaparece el problema
+          child.material.side = THREE.FrontAndBackSide;
+        }
+      });
+      console.log(miiModel.scale); 
+  
+      wuhu_island.add(miiModel);
+  
+      // Crear un AnimationMixer para reproducir la animación
+      miiMixer = new THREE.AnimationMixer(miiModel);
+  
+      // Tomar la primera animación (si tu archivo GLB tiene varias, ajusta el índice)
+      const clip = gltf.animations[0];
+      if (clip) {
+        const action = miiMixer.clipAction(clip);
+        action.play();
+      }
+    });
   });   
 }
 
 // Función para crear el cubo y añadirle la interfaz de control
 function initCubeWithGUI() {
     // Crear la geometría y material del cubo
-    /*
+    
     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
     const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
     cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -98,7 +131,7 @@ function initCubeWithGUI() {
       x: cube.position.x,
       y: cube.position.y,
       z: cube.position.z
-    };*/
+    };
     const cameraPos = {
       x: camera.position.x,
       y: camera.position.y,
@@ -107,7 +140,7 @@ function initCubeWithGUI() {
 
     // Crear la GUI y agregar los controles para la posición
     gui = new GUI();
-    /*const cubeFolder = gui.addFolder("Posición del Cubo (Relativa a la Isla)");
+    const cubeFolder = gui.addFolder("Posición del Cubo (Relativa a la Isla)");
     // Control para el eje X
     cubeFolder.add(cubePos, "x", -1000, 1000)
     .name("X")
@@ -147,7 +180,7 @@ function initCubeWithGUI() {
     })
     .listen();   // Number Field
     cubeFolder.open();
-    */
+    
     // Folder para la posición de la cámara
     const cameraFolder = gui.addFolder("Camera Position");
     cameraFolder.add(cameraPos, "x").name("X").onChange((value) => {
