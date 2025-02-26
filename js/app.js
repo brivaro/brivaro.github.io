@@ -245,6 +245,7 @@ function update()
 
         if (!hoveredPointer.userData.isHovered) {
             hoveredPointer.userData.isHovered = true; // Marcar como activo
+            document.body.style.cursor = 'pointer'; // Cambiar el cursor
             new TWEEN.Tween(hoveredPointer.scale)
                 .to({ x: 5.5, y: 5.5, z: 5.5 }, 300) // Escala más grande en 300ms
                 .easing(TWEEN.Easing.Quadratic.Out)
@@ -258,6 +259,7 @@ function update()
     map_pointers.forEach((pointer) => {
         if (pointer !== hoveredPointer && pointer.userData.isHovered) {
             pointer.userData.isHovered = false; // Desmarcar
+            document.body.style.cursor = 'default'; // Cambiar el cursor
             new TWEEN.Tween(pointer.scale)
                 .to({ x: 2, y: 2, z: 2 }, 300) // Volver a la escala normal en 300ms
                 .easing(TWEEN.Easing.Quadratic.Out)
