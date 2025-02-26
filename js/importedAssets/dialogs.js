@@ -226,6 +226,14 @@ export function showPointerDialog(pointerId) {
         wrapper.appendChild(node);
       }
     });
+    // Al pasar el ratón por encima del wrapper, cambiar cursor a "pointer"
+    summary.addEventListener('mouseover', () => {
+      summary.style.cursor = 'pointer';
+    });
+    summary.addEventListener('mouseout', () => {
+      summary.style.cursor = 'default';
+    });
+
     // Agregar el wrapper al final del <details>
     detail.appendChild(wrapper);
 
