@@ -16,7 +16,7 @@ import { RGBELoader } from "../../lib/RGBELoader.js";
 import { TWEEN } from "../lib/tween.module.min.js";
 import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
 import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
-import * as SkeletonUtils from "../lib/SkeletonUtils.js";
+//import * as SkeletonUtils from "../lib/SkeletonUtils.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 
@@ -33,7 +33,6 @@ const helpButton = document.getElementById("helpButton");
 let isNight = nightCheckbox.checked;
 let fireworksManager = null;
 
-// Biblioteca con las posiciones destino según el pointer clicado
 const pointerTargetPositions = {
     about: new THREE.Vector3(27, 2, -10),
     projects: new THREE.Vector3(-19, 5, -15),
@@ -77,7 +76,6 @@ function init() {
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     });
     window.addEventListener('click', () => {
-        // Detectar intersección con el raycaster
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(map_pointers, true);
       
@@ -107,7 +105,6 @@ function init() {
           }
         }
     });    
-    // Asignar listeners a los enlaces del menú
     document.querySelectorAll('#menuOverlay ul li a').forEach(link => {
         link.addEventListener('click', event => {
         event.preventDefault(); // Evita la navegación por defecto
@@ -177,7 +174,6 @@ function updateAspectRatio()
 
 function update()
 {
-    // Actualizar las animaciones
     const delta = clock.getDelta();
     const elapsedTime = clock.getElapsedTime();
     let waveOffset = 0.0;
@@ -204,7 +200,6 @@ function update()
         walkSound.pause();
     }
 
-    // Comprueba que la cámara no baje por debajo de y
     if (camera.position.y < -1.1) {
         camera.position.y = -1.1;
     }
@@ -215,7 +210,6 @@ function update()
         water.material.uniforms['time'].value += delta * 0.5;
     }
     
-    // Si modelo cargado, ajustar su altura para que flote con las olas
     if (mobile) {
         // Sumamos el desplazamiento a la altura base guardada
         mobile.position.y = mobile.userData.baseY + waveOffset;
@@ -315,7 +309,6 @@ function updateSceneMode() {
     isNight = nightCheckbox.checked;
     dayNightSound.play();
 
-    // Elimina las luces existentes:
     scene.remove(scene.getObjectByName('ld'));
     scene.remove(scene.getObjectByName('l1'));
     scene.remove(scene.getObjectByName('l2'));
@@ -364,7 +357,7 @@ function updateSceneMode() {
       }
     }
 
-    // Actualiza el cielo según el modo
+    // Actualiza el cielo
     updateSky(scene, isNight);
 }
 
