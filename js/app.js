@@ -31,6 +31,7 @@ const menuButton = document.getElementById('menuButton');
 const helpButton = document.getElementById("helpButton");
 let isNight = nightCheckbox.checked;
 let fireworksManager = null;
+let randomMode = 0;
 
 const pointerTargetPositions = {
     about: new THREE.Vector3(27, 2, -10),
@@ -138,6 +139,9 @@ function init() {
 }
 
 function loadScene() {
+
+    randomMode = Math.floor(Math.random() * 2);
+
     // 💡 Iluminación 💡
     iniLights(scene);
 
@@ -149,7 +153,14 @@ function loadScene() {
 
     // 🎆 Cargar cielos (día y noche) y actualizar 🎆
     iniSkies(renderer, exrLoader, rgbeLoader).then(() => {
-        updateSky(scene, isNight);
+        if (randomMode == 1){
+            isNight = true;
+            nightCheckbox.checked = true;
+            updateSceneMode();
+        }
+        else{
+            updateSky(scene, isNight);
+        }
     });
 
     // Ejes
@@ -306,7 +317,14 @@ function render() {
 // -------------------------
 function updateSceneMode() {
     isNight = nightCheckbox.checked;
-    dayNightSound.play();
+
+    if (randomMode == 1){ 
+        //dayNightSound.play(); sin sonido
+        randomMode = 0;
+    }
+    else{
+        dayNightSound.play();
+    }
 
     scene.remove(scene.getObjectByName('ld'));
     scene.remove(scene.getObjectByName('l1'));
