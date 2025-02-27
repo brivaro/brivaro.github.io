@@ -16,7 +16,6 @@ import { RGBELoader } from "../../lib/RGBELoader.js";
 import { TWEEN } from "../lib/tween.module.min.js";
 import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
 import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
-//import * as SkeletonUtils from "../lib/SkeletonUtils.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 

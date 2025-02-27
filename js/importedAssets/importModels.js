@@ -1,7 +1,8 @@
 import { GUI } from "../../lib/lil-gui.module.min.js";
 import { camera } from "../camera/camera.js";
+import * as SkeletonUtils from "../../lib/SkeletonUtils.js";
 
-export let mobile, wuhu_island, gui;
+export let mobile, wuhu_island, gui, beach_kit;
 export let map_pointers = [];
 let cube;
 export let miiModel, miiMixer;
@@ -30,27 +31,32 @@ export function iniWuhuIsland(scene, loader){
 
     initCubeWithGUI();
 
-    Object.keys(map_pointer_lib).forEach((key) => {
-      loader.load('models/map_pointer/places_of_interest.gltf', function (gltf) {
-        const pointerModel = gltf.scene;
-        // Asignamos la posición usando copy para clonar el vector
-        pointerModel.userData.id = key;
-        pointerModel.position.copy(map_pointer_lib[key]);
-        pointerModel.scale.set(2, 2, 2);
-        // Guardar la posición inicial en Y para la oscilación vertical
-        pointerModel.userData.initialY = pointerModel.position.y;
-        
-        pointerModel.traverse((child) => {
+    loader.load('models/map_pointer/places_of_interest.gltf', function (gltf) {
+      // Guardamos la escena original
+      let map_pointer = SkeletonUtils.clone(gltf.scene);
+      
+      // Una vez cargado, ya podemos iterar sobre "map_pointer_lib"
+      Object.keys(map_pointer_lib).forEach((key) => {
+        // Clonamos el modelo usando SkeletonUtils
+        const pointerClone = map_pointer.clone();
+
+        // Asignamos el ID y posición
+        pointerClone.userData.id = key;
+        pointerClone.position.copy(map_pointer_lib[key]);
+        pointerClone.scale.set(2, 2, 2);
+        pointerClone.userData.initialY = pointerClone.position.y;
+
+        // Activamos sombras en cada clon
+        pointerClone.traverse((child) => {
           if (child.isMesh) {
             child.castShadow = true;
             child.receiveShadow = true;
           }
         });
 
-        map_pointers.push(pointerModel);
-
-        // Agregamos el punto de interés a la isla
-        wuhu_island.add(pointerModel);
+        // Guardamos en el array y añadimos a la escena
+        map_pointers.push(pointerClone);
+        wuhu_island.add(pointerClone);
       });
     });
     
@@ -90,7 +96,6 @@ export function iniWuhuIsland(scene, loader){
           child.material.side = THREE.FrontAndBackSide;
         }
       });
-      //console.log(miiModel.scale); 
   
       wuhu_island.add(miiModel);
   
@@ -103,6 +108,30 @@ export function iniWuhuIsland(scene, loader){
         const action = miiMixer.clipAction(clip);
         action.play();
       }
+    });
+
+    loader.load('models/beach_kit.glb', function (gltf) {
+      // El modelo 3D
+      beach_kit = gltf.scene;
+      beach_kit.position.set(85, 0.6, 35); //(84, 0.6, 70); 
+      beach_kit.rotation.set(0, 5, 0);
+      beach_kit.scale.set(0.8, 0.8, 0.8);
+
+      beach_kit.traverse((child) => {
+        if (child.isMesh && child.geometry) {
+          if (child.geometry.attributes.uv2) {
+            child.geometry.setAttribute('uv1', child.geometry.attributes.uv); // Forzar uso del UV principal
+          }
+      
+          if (child.material && child.material.normalMap) {
+            child.material.normalMap.channel = 0; // Asegurar que usa el primer UV
+          }
+
+          child.castShadow = true;
+        }
+      });
+
+      wuhu_island.add(beach_kit);
     });
   });   
 }

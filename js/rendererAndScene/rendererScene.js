@@ -4,9 +4,8 @@ export function iniRendererScene(){
     renderer = new THREE.WebGLRenderer({ antialias: true }); //reduce los dientes de sierra, puede afectar al rendimiento
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( new THREE.Color(0xFFFFFF) );
-    renderer.shadowMap.enabled=true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // para suavizar sombras
-    renderer.shadowMap.type=0;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // o PCFShadowMap / VSMShadowMap
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.domElement.style.position = 'relative';
     document.getElementById('container').appendChild(renderer.domElement);
