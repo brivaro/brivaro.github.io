@@ -1,5 +1,6 @@
 import { wuhu_island } from "../importedAssets/importModels.js";
 import { walkSound } from "../ui/music.js";
+
 // ------------------------------
 // Variables para el salto y la gravedad
 // ------------------------------
@@ -9,7 +10,7 @@ const gravity = -30;   // Aceleración de la gravedad
 const jumpSpeed = 10;   // Velocidad inicial del salto
 let headBlocked = false;  // Indicar si hay algo encima que impida el salto
 
-const keysPressed = {};
+export const keysPressed = {};
 export function keybuttoms(){
     window.addEventListener('keydown', (event) => {
         keysPressed[event.code] = true;
@@ -18,6 +19,7 @@ export function keybuttoms(){
     keysPressed[event.code] = false;
     });
 }
+
 
 /**
  * Función que lanza un raycast hacia arriba para comprobar si hay un obstáculo
