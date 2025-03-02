@@ -15,7 +15,7 @@ export const map_pointer_lib = {
 }
 
 export function iniWuhuIsland(scene, loader){
-  loader.load('models/wuhu_island/scene.glb', function (gltf) {
+  loader.load('models/wuhu_island/ISLA.glb', function (gltf) {
     wuhu_island = gltf.scene;
     //wuhu_island.position.set(0, 0.4, 0);
     wuhu_island.scale.set(0.5, 0.5, 0.5);
