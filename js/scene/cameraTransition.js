@@ -57,7 +57,7 @@ export function updatePlayerView(event, camera, cameraControls, renderer){
         params = {
           activateControls: false
         };
-        controlsFolder.add(params, "activateControls").name("Activate Controls").onChange(value => {
+        controlsFolder.add(params, "activateControls").name("Activate Mobile Controls").onChange(value => {
           if (value) {
             createButtons();
           } else {
@@ -120,7 +120,7 @@ function createButtons() {
   // Botón ARRIBA (simula KeyW)
   const btnArriba = document.createElement("button");
   btnArriba.style.fontWeight = "bold";
-  btnArriba.innerHTML = "↑";
+  btnArriba.innerHTML = "⏫";
   btnArriba.style.width = "50px";
   btnArriba.style.height = "50px";
   btnArriba.style.margin = "1em";
@@ -134,19 +134,32 @@ function createButtons() {
   filaVertical.appendChild(btnArriba);
   
   // Botón ABAJO (simula KeyS)
-  const btnAbajo = document.createElement("button");
-  btnAbajo.style.fontWeight = "bold";
-  btnAbajo.innerHTML = "↓";
-  btnAbajo.style.width = "50px";
-  btnAbajo.style.height = "50px";
-  btnAbajo.style.border = "none";
-  btnAbajo.style.borderRadius = "30px";
-  btnAbajo.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  btnAbajo.style.backgroundColor = "white";
-  btnAbajo.addEventListener("pointerdown", () => { keysPressed['KeyS'] = true; });
-  btnAbajo.addEventListener("pointerup", () => { keysPressed['KeyS'] = false; });
-  btnAbajo.addEventListener("pointerleave", () => { keysPressed['KeyS'] = false; });
-  filaVertical.appendChild(btnAbajo);
+  //const btnAbajo = document.createElement("button");
+  //btnAbajo.style.fontWeight = "bold";
+  //btnAbajo.innerHTML = "↓";
+  //btnAbajo.style.width = "50px";
+  //btnAbajo.style.height = "50px";
+  //btnAbajo.style.border = "none";
+  //btnAbajo.style.borderRadius = "30px";
+  //btnAbajo.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
+  //btnAbajo.style.backgroundColor = "white";
+  //btnAbajo.addEventListener("pointerdown", () => { keysPressed['KeyS'] = true; });
+  //btnAbajo.addEventListener("pointerup", () => { keysPressed['KeyS'] = false; });
+  //btnAbajo.addEventListener("pointerleave", () => { keysPressed['KeyS'] = false; });
+  //filaVertical.appendChild(btnAbajo);
+  const btnSalto = document.createElement("button");
+  btnSalto.style.fontWeight = "bold";
+  btnSalto.innerHTML = "🦘";
+  btnSalto.style.width = "50px";
+  btnSalto.style.height = "50px";
+  btnSalto.style.border = "none";
+  btnSalto.style.borderRadius = "30px";
+  btnSalto.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
+  btnSalto.style.backgroundColor = "white";
+  btnSalto.addEventListener("pointerdown", () => { keysPressed['Space'] = true; });
+  btnSalto.addEventListener("pointerup", () => { keysPressed['Space'] = false; });
+  btnSalto.addEventListener("pointerleave", () => { keysPressed['Space'] = false; });
+  filaVertical.appendChild(btnSalto);
   
   // Botones horizontales: Izquierda y Derecha
   const filaHorizontal = document.createElement("div");
@@ -155,7 +168,7 @@ function createButtons() {
   // Botón IZQUIERDA (simula KeyA)
   const btnIzquierda = document.createElement("button");
   btnIzquierda.style.fontWeight = "bold";
-  btnIzquierda.innerHTML = "←";
+  btnIzquierda.innerHTML = "⏪";
   btnIzquierda.style.width = "50px";
   btnIzquierda.style.height = "50px";
   btnIzquierda.style.margin = "4em";
@@ -171,7 +184,7 @@ function createButtons() {
   // Botón DERECHA (simula KeyD)
   const btnDerecha = document.createElement("button");
   btnDerecha.style.fontWeight = "bold";
-  btnDerecha.innerHTML = "→";
+  btnDerecha.innerHTML = "⏩";
   btnDerecha.style.width = "50px";
   btnDerecha.style.height = "50px";
   btnDerecha.style.margin = "4em";

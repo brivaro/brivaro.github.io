@@ -7,6 +7,7 @@ export const melodySound = new THREE.Audio(listener);
 export const dayNightSound = new THREE.Audio(listener);
 export const menuSound = new THREE.Audio(listener);
 export const walkSound = new THREE.Audio(listener);
+export const jumpSound = new THREE.Audio(listener);
 export let isMuted = false;
 
 const audioLoader = new THREE.AudioLoader();
@@ -18,6 +19,13 @@ audioLoader.load('../sounds/day.mp3', function(buffer) {
     dayNightSound.setBuffer(buffer);
     dayNightSound.setLoop(false);
     dayNightSound.setVolume(0.7);
+});
+
+// Cargar sonido salto
+audioLoader.load('../sounds/jump.wav', function(buffer) {
+    jumpSound.setBuffer(buffer);
+    jumpSound.setLoop(false);
+    jumpSound.setVolume(1);
 });
 
 // Cargar sonido melodia

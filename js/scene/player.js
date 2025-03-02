@@ -1,5 +1,5 @@
 import { wuhu_island } from "../importedAssets/importModels.js";
-import { walkSound } from "../ui/music.js";
+import { walkSound, jumpSound } from "../ui/music.js";
 
 // ------------------------------
 // Variables para el salto y la gravedad
@@ -112,6 +112,7 @@ export function updateJump(camera) {
         walkSound.pause();
         // Consumir la pulsación para evitar saltos continuos al mantener presionada la tecla
         keysPressed['Space'] = false;
+        jumpSound.play();
     }
   }
   
