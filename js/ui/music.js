@@ -30,7 +30,7 @@ audioLoader.load('../sounds/melody.mp3', function(buffer) {
 // Cargar sonido walking
 audioLoader.load('../sounds/walk.mp3', function(buffer) {
     walkSound.setBuffer(buffer);
-    walkSound.setLoop(false);
+    walkSound.setLoop(true);
     walkSound.setVolume(0.6);
 });
 
