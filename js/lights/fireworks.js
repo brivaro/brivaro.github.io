@@ -201,7 +201,7 @@ class FireworksManager {
     this.scene = scene;
     this.fireworks = [];
     this.spawnInterval = 3; // Intervalo de creación (en segundos)
-    this.elapsedTime = 0;
+    this.elapsedTime = 0.5;
   }
 
   update(delta) {

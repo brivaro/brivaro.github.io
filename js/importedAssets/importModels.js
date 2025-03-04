@@ -2,7 +2,7 @@ import { GUI } from "../../lib/lil-gui.module.min.js";
 import { camera } from "../camera/camera.js";
 import * as SkeletonUtils from "../../lib/SkeletonUtils.js";
 
-export let mobile, wuhu_island, gui, beach_kit;
+export let mobile, wuhu_island, gui, beach_kit, boat;
 export let map_pointers = [];
 let cube;
 export let miiModel, miiMixer;
@@ -61,6 +61,23 @@ export function iniWuhuIsland(scene, loader){
     });
     
     scene.add(wuhu_island);
+
+    loader.load('models/tugboat.glb', function (gltf) {
+      boat = gltf.scene;
+      boat.position.set(3.6, 0.2, 56);
+      boat.scale.set(3, 3, 3);
+      // Guardamos la posición base en Y para la flotación
+      boat.userData.baseY = boat.position.y;
+
+      boat.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+
+      wuhu_island.add(boat);
+    });
     
     loader.load('models/app_island/scene.gltf', function (gltf) {
       mobile = gltf.scene;
@@ -88,12 +105,6 @@ export function iniWuhuIsland(scene, loader){
       miiModel.traverse((child) => {
         if (child.isMesh && child.geometry) {
           child.castShadow = true;
-          
-          // Recalcula las normales de la geometría
-          child.geometry.computeVertexNormals();
-      
-          // Prueba forzar doble cara para verificar si desaparece el problema
-          child.material.side = THREE.FrontAndBackSide;
         }
       });
   
