@@ -36,7 +36,7 @@ let randomMode = 0;
 const pointerTargetPositions = {
     about: new THREE.Vector3(27, 2, -10),
     projects: new THREE.Vector3(-19, 5, -15),
-    experience: new THREE.Vector3(-12, 1, 8),
+    experience: new THREE.Vector3(-12, 2, 8),
     contact: new THREE.Vector3(26, 1, 27)
   };
 const raycaster = new THREE.Raycaster();
