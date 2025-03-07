@@ -111,99 +111,40 @@ function createButtons() {
   contenedor.style.alignItems = "center";
   contenedor.style.zIndex = "1000";
   
-  // Botones verticales: Arriba y Abajo
-  const filaVertical = document.createElement("div");
-  filaVertical.style.display = "flex";
-  filaVertical.style.flexDirection = "column";
-  filaVertical.style.alignItems = "center";
+  // Fila de botones
+  const filaBotones = document.createElement("div");
+  filaBotones.style.display = "flex";
+  filaBotones.style.gap = "2em";
+
+  const crearBoton = (icono, key) => {
+    const boton = document.createElement("button");
+    boton.style.fontWeight = "bold";
+    boton.innerHTML = icono;
+    boton.style.width = "50px";
+    boton.style.height = "50px";
+    boton.style.border = "none";
+    boton.style.marginBottom = "8em";
+    boton.style.borderRadius = "30px";
+    boton.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
+    boton.style.backgroundColor = "white";
+    boton.addEventListener("pointerdown", () => { keysPressed[key] = true; });
+    boton.addEventListener("pointerup", () => { keysPressed[key] = false; });
+    boton.addEventListener("pointerleave", () => { keysPressed[key] = false; });
+    return boton;
+  };
+
+  filaBotones.appendChild(crearBoton("⏪", "KeyA")); // Izquierda
+  filaBotones.appendChild(crearBoton("⏫", "KeyW")); // Arriba
+  filaBotones.appendChild(crearBoton("🦘", "Space")); // Salto
+  filaBotones.appendChild(crearBoton("⏩", "KeyD")); // Derecha
   
-  // Botón ARRIBA (simula KeyW)
-  const btnArriba = document.createElement("button");
-  btnArriba.style.fontWeight = "bold";
-  btnArriba.innerHTML = "⏫";
-  btnArriba.style.width = "50px";
-  btnArriba.style.height = "50px";
-  btnArriba.style.margin = "1em";
-  btnArriba.style.border = "none";
-  btnArriba.style.borderRadius = "30px";
-  btnArriba.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  btnArriba.style.backgroundColor = "white";
-  btnArriba.addEventListener("pointerdown", () => { keysPressed['KeyW'] = true; });
-  btnArriba.addEventListener("pointerup", () => { keysPressed['KeyW'] = false; });
-  btnArriba.addEventListener("pointerleave", () => { keysPressed['KeyW'] = false; });
-  filaVertical.appendChild(btnArriba);
-  
-  // Botón ABAJO (simula KeyS)
-  //const btnAbajo = document.createElement("button");
-  //btnAbajo.style.fontWeight = "bold";
-  //btnAbajo.innerHTML = "↓";
-  //btnAbajo.style.width = "50px";
-  //btnAbajo.style.height = "50px";
-  //btnAbajo.style.border = "none";
-  //btnAbajo.style.borderRadius = "30px";
-  //btnAbajo.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  //btnAbajo.style.backgroundColor = "white";
-  //btnAbajo.addEventListener("pointerdown", () => { keysPressed['KeyS'] = true; });
-  //btnAbajo.addEventListener("pointerup", () => { keysPressed['KeyS'] = false; });
-  //btnAbajo.addEventListener("pointerleave", () => { keysPressed['KeyS'] = false; });
-  //filaVertical.appendChild(btnAbajo);
-  const btnSalto = document.createElement("button");
-  btnSalto.style.fontWeight = "bold";
-  btnSalto.innerHTML = "🦘";
-  btnSalto.style.width = "50px";
-  btnSalto.style.height = "50px";
-  btnSalto.style.border = "none";
-  btnSalto.style.borderRadius = "30px";
-  btnSalto.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  btnSalto.style.backgroundColor = "white";
-  btnSalto.addEventListener("pointerdown", () => { keysPressed['Space'] = true; });
-  btnSalto.addEventListener("pointerup", () => { keysPressed['Space'] = false; });
-  btnSalto.addEventListener("pointerleave", () => { keysPressed['Space'] = false; });
-  filaVertical.appendChild(btnSalto);
-  
-  // Botones horizontales: Izquierda y Derecha
-  const filaHorizontal = document.createElement("div");
-  filaHorizontal.style.display = "flex";
-  
-  // Botón IZQUIERDA (simula KeyA)
-  const btnIzquierda = document.createElement("button");
-  btnIzquierda.style.fontWeight = "bold";
-  btnIzquierda.innerHTML = "⏪";
-  btnIzquierda.style.width = "50px";
-  btnIzquierda.style.height = "50px";
-  btnIzquierda.style.margin = "4em";
-  btnIzquierda.style.border = "none";
-  btnIzquierda.style.borderRadius = "30px";
-  btnIzquierda.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  btnIzquierda.style.backgroundColor = "white";
-  btnIzquierda.addEventListener("pointerdown", () => { keysPressed['KeyA'] = true; });
-  btnIzquierda.addEventListener("pointerup", () => { keysPressed['KeyA'] = false; });
-  btnIzquierda.addEventListener("pointerleave", () => { keysPressed['KeyA'] = false; });
-  filaHorizontal.appendChild(btnIzquierda);
-  
-  // Botón DERECHA (simula KeyD)
-  const btnDerecha = document.createElement("button");
-  btnDerecha.style.fontWeight = "bold";
-  btnDerecha.innerHTML = "⏩";
-  btnDerecha.style.width = "50px";
-  btnDerecha.style.height = "50px";
-  btnDerecha.style.margin = "4em";
-  btnDerecha.style.border = "none";
-  btnDerecha.style.borderRadius = "30px";
-  btnDerecha.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-  btnDerecha.style.backgroundColor = "white";
-  btnDerecha.addEventListener("pointerdown", () => { keysPressed['KeyD'] = true; });
-  btnDerecha.addEventListener("pointerup", () => { keysPressed['KeyD'] = false; });
-  btnDerecha.addEventListener("pointerleave", () => { keysPressed['KeyD'] = false; });
-  filaHorizontal.appendChild(btnDerecha);
-  
-  // Agregar filas al contenedor
-  contenedor.appendChild(filaVertical);
-  contenedor.appendChild(filaHorizontal);
+  // Agregar fila al contenedor
+  contenedor.appendChild(filaBotones);
   
   // Añadir el contenedor al body
   document.body.appendChild(contenedor);
 }
+
 
 /**
  * Función para eliminar los botones móviles de la pantalla.
