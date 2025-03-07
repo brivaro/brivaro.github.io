@@ -1,6 +1,4 @@
 // fireworks.js
-import * as THREE from 'three';
-
 // Pool para las partículas del trail
 class ParticlePool {
   constructor(scene, maxSize = 100) {
@@ -242,9 +240,21 @@ class FireworksManager {
     this.elapsedTime = 0.5;
     // Límite de fuegos artificiales activos para evitar saturar la escena
     this.maxFireworks = 10;
+    this.enabled = false; // Controla si se generan fuegos artificiales
+  }
+
+  setEnabled(value) {
+    this.enabled = value;
+    if (!value) {
+      // Si se deshabilita, elimina los fuegos activos
+      this.fireworks.forEach(fw => fw.dispose());
+      this.fireworks = [];
+    }
   }
 
   update(delta) {
+    if (!this.enabled) return; // Si está deshabilitado, no hace nada
+    
     const timeNow = performance.now() / 1000; // tiempo actual en segundos
 
     // Actualizar cada fuego artificial

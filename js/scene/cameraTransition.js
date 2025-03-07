@@ -2,7 +2,7 @@
    FUNCIONES DE TRANSICIÓN CON TWEEN.JS PARA CAMBIAR DE VISTA
    ============================================================ 
 */
-import {TWEEN} from "../../lib/tween.module.min.js";
+import { TWEEN } from "../../lib/tween.module.min.js";
 import { FirstPersonControls } from '../../lib/FirstPersonControls.js';
 import { gui } from "../importedAssets/importModels.js";
 import { keysPressed } from "../scene/player.js";

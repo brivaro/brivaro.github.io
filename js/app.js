@@ -5,6 +5,7 @@ import { iniRendererScene, renderer, scene } from "../js/rendererAndScene/render
 import { iniLights } from "../js/lights/lights.js";
 import { iniWater, water, getWaveHeight } from "../js/ocean/water.js";
 import { iniWuhuIsland, mobile, map_pointers, miiMixer, boat } from "./importedAssets/importModels.js";
+import { preloadTransitionImages, showTransitionImage } from "./importedAssets/importImages.js";
 import { showPointerDialog } from "./importedAssets/dialogs.js";
 import { iniSkies, updateSky } from "../js/importedAssets/importSky.js";
 import { listener, oceanSound, diveSound, isMuted, fireworkSound, dayNightSound, walkSound, melodySound } from "./ui/music.js";
@@ -16,10 +17,10 @@ import { RGBELoader } from "../../lib/RGBELoader.js";
 import { TWEEN } from "../lib/tween.module.min.js";
 import { updatePlayerView, fpControls, isFirstPerson } from "../js/scene/cameraTransition.js";
 import { updatePlayer, keybuttoms, updateJump, updatePlayerY } from "../js/scene/player.js";
+import * as OrbitControls from "../../lib/OrbitControls.js";
 
 // ⌛ Reloj para la animación ⌛
 const clock = new THREE.Clock(); 
-
 const loader = new GLTFLoader(loadingManager);
 const exrLoader = new EXRLoader(loadingManager);
 const rgbeLoader = new RGBELoader(loadingManager);
@@ -29,10 +30,17 @@ const nightCheckbox = document.getElementById("checkbox");
 const playerView = document.getElementById("fpButton");
 const menuButton = document.getElementById('menuButton');
 const helpButton = document.getElementById("helpButton");
-let isNight = nightCheckbox.checked;
+export let isNight = nightCheckbox.checked;
 let fireworksManager = null;
 let randomMode = 0;
-
+// Alternar luces según el modo
+let ambientLight = null;
+let directionalLight = null;
+let ambientLightSky = null;
+let directionalLightSun = null;
+let ambientLightNight = null;
+let direccionalLightNight = null;
+// Posiciones de los pointers en el mapa
 const pointerTargetPositions = {
     about: new THREE.Vector3(27, 2, -10),
     projects: new THREE.Vector3(-19, 5, -15),
@@ -44,13 +52,16 @@ const mouse = new THREE.Vector2();
 let clickedPointer = null;
 
 // -------------------------
-// Acciones
+// ACCIONES INICIALES
 // -------------------------
 init();
 loadScene();
 initPostprocessing(renderer, scene, camera);
 render();
 
+// -------------------------
+// FUNCIONES
+// -------------------------
 function init() {
     // 🐱‍🏍 Motor de render y escena 🐱‍🏍
     iniRendererScene();
@@ -69,6 +80,7 @@ function init() {
     nightCheckbox.addEventListener('change', updateSceneMode);
     helpButton.addEventListener("click", () => showPointerDialog('help'));
     iniMenu(menuButton, playerView);
+    preloadTransitionImages();
     keybuttoms(); //para el movimiento en primera persona
     window.addEventListener("mousemove", (event) => {
         // Normalizar la posición del mouse (-1 a 1)
@@ -144,6 +156,7 @@ function loadScene() {
 
     // 💡 Iluminación 💡
     iniLights(scene);
+    setLights(scene);
 
     // 🌊 Mar 🌊
     iniWater(scene);
@@ -156,11 +169,16 @@ function loadScene() {
         if (randomMode == 1){
             isNight = true;
             nightCheckbox.checked = true;
-            updateSceneMode();
         }
-        else{
-            updateSky(scene, isNight);
+        // Instanciar el FireworksManager si aún no existe
+        if (!fireworksManager) {
+            fireworksManager = new FireworksManager(scene);
         }
+        // Lo desactivamos inicialmente si no es modo noche
+        fireworksManager.setEnabled(isNight);
+
+        activateNightOrDayLights(isNight);
+        updateSky(scene, isNight);
     });
 
     // Ejes
@@ -314,74 +332,64 @@ function render() {
     composer.render() // con el postprocesado
 }
 
-
-
 // -------------------------
 // DIA y NOCHE
 // -------------------------
 function updateSceneMode() {
     isNight = nightCheckbox.checked;
-
-    if (randomMode == 1){ 
-        //dayNightSound.play(); sin sonido
-        randomMode = 0;
+    dayNightSound.play();
+    // Mostrar la animación de transición
+    showTransitionImage(isNight);
+    setTimeout(() => {
+        activateNightOrDayLights(isNight);
+        updateSky(scene, isNight);
+        // Activa o desactiva los fuegos artificiales
+        if (fireworksManager) {
+            fireworksManager.setEnabled(isNight);
     }
-    else{
-        dayNightSound.play();
-    }
-
-    scene.remove(scene.getObjectByName('ld'));
-    scene.remove(scene.getObjectByName('l1'));
-    scene.remove(scene.getObjectByName('l2'));
-    scene.remove(scene.getObjectByName('l3'));
-  
-    if (isNight) {
-      // En modo noche
-      fireworkSound.setVolume(1);
-      let light = new THREE.AmbientLight(0xffffff, 0.3);
-      light.name = "ln";
-      scene.add(light);
-      light = new THREE.DirectionalLight(0xffffff, 0.7);
-      light.position.set(1000, 2000, 1000);
-      light.target.position.set(0, 1, 0); // Apunta a (0,1,0)
-      light.name = "ln1";
-      light.castShadow = true;
-      // Configuración de la cámara de sombras
-      light.shadow.camera.left = -50;
-      light.shadow.camera.right = 50;
-      light.shadow.camera.top = 50;
-      light.shadow.camera.bottom = -50;
-      // Resolucion mapa sombras
-      light.shadow.mapSize.width = 4096;
-      light.shadow.mapSize.height = 4096;
-      // Define a partir de que margen crea sombra
-      light.shadow.camera.far = 4000;
-      light.shadow.camera.near = 0.5;
-      // Si es negativo, corrige artefactos en sombras, muy positivo reduce mucho la sombra
-      light.shadow.bias = -0.0001;
-      light.shadow.normalBias = 0.05;
-      scene.add(light);
-      // Si es de noche, activamos los fuegos artificiales
-      if (!fireworksManager) {
-        fireworksManager = new FireworksManager(scene);
-      }
-    } else {
-      // En modo día
-      fireworkSound.setVolume(0);
-      scene.remove(scene.getObjectByName('ln'));
-      scene.remove(scene.getObjectByName('ln1'));
-      iniLights(scene);
-      // Si pasa a día, eliminamos los fuegos
-      if (fireworksManager) {
-        fireworksManager.fireworks.forEach(fw => fw.dispose());
-        fireworksManager = null;
-      }
-    }
-
-    // Actualiza el cielo
-    updateSky(scene, isNight);
+    }, 600);
+    
 }
 
+function activateNightOrDayLights(isNight) {
+    if (isNight) {
+        // En modo noche
+        fireworkSound.setVolume(1);
+        // Activar las luces de la noche
+        if (ambientLightNight) ambientLightNight.visible = true;
+        if (direccionalLightNight) direccionalLightNight.visible = true;
+        // Desactivar las luces del día
+        if (ambientLight) ambientLight.visible = false;
+        if (directionalLight) directionalLight.visible = false;
+        if (ambientLightSky) ambientLightSky.visible = false;
+        if (directionalLightSun) directionalLightSun.visible = false;
+        
+        // Si es de noche, activamos los fuegos artificiales
+        if (!fireworksManager) {
+          fireworksManager = new FireworksManager(scene);
+        }
+    } else {
+        // En modo día
+        fireworkSound.setVolume(0);
+        // Activar las luces del día
+        if (ambientLight) ambientLight.visible = true;
+        if (directionalLight) directionalLight.visible = true;
+        if (ambientLightSky) ambientLightSky.visible = true;
+        if (directionalLightSun) directionalLightSun.visible = true;
+        // Desactivar las luces de la noche
+        if (ambientLightNight) ambientLightNight.visible = false;
+        if (direccionalLightNight) direccionalLightNight.visible = false;
+    }
+}
+
+function setLights(scene) {
+    ambientLight = scene.getObjectByName("AmbientLight");
+    directionalLight = scene.getObjectByName("DirectionalLight");
+    ambientLightSky = scene.getObjectByName("DirectionalLightSky");
+    directionalLightSun = scene.getObjectByName("DirectionalLightSun");
+    ambientLightNight = scene.getObjectByName("AmbientLightNight");
+    direccionalLightNight = scene.getObjectByName("DirectionalLightNight");
+}
 
 function transitionToPointer(pointer) {
     // Comprobamos que el pointer tenga un ID definido en userData

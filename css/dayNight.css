@@ -347,3 +347,26 @@
     transform: scale(1);
   }
 }
+
+
+/*******************************************************/
+/************   ESTE ES CON SOL Y LUNA    **************/
+/*******************************************************/
+@keyframes transitionInOut {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.10);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.10);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}

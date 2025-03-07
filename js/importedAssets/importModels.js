@@ -1,6 +1,7 @@
 import { GUI } from "../../lib/lil-gui.module.min.js";
 import { camera } from "../camera/camera.js";
 import * as SkeletonUtils from "../../lib/SkeletonUtils.js";
+import * as THREE from "../../lib/three.module.js";
 
 export let mobile, wuhu_island, gui, beach_kit, boat;
 export let map_pointers = [];
