@@ -2,6 +2,9 @@
 import { startAudio } from "../ui/music.js";
 import { camera } from "../camera/camera.js";
 import { TWEEN } from "../../lib/tween.module.min.js";
+import { FontLoader } from '../../lib/FontLoader.module.js';
+import { TextGeometry } from '../../lib/TextGeometry.module.js';
+import { scene } from "../rendererAndScene/rendererScene.js";
 
 // -------------------------
 // Configuración del LoadingManager
@@ -18,9 +21,13 @@ audioLoader.load('../sounds/intro.mp3', function(buffer) {
   introSound.setVolume(0.4);
 });
 
+let textMaterial1, textGeometry1, textMaterial2, textGeometry2, textMesh1, textMesh2;
+
 export const loadingManager = new THREE.LoadingManager(
   // onLoad: cuando todo se haya cargado
   () => {
+    showIntroText3D();
+
     // Actualiza el texto a 100%
     loadingText.innerText = '100%';
 
@@ -42,11 +49,24 @@ export const loadingManager = new THREE.LoadingManager(
         introSound.play();
         startAudio();  // Inicia la reproducción de los sonidos
         loadingOverlay.style.display = 'none';
+
+        // Después de 2 segundos, eliminar ambos meshes de la escena
+        setTimeout(() => {
+          scene.remove(textMesh1);
+          scene.remove(textMesh2);
+          
+          // Liberar recursos
+          textGeometry1.dispose();
+          textMaterial1.dispose();
+          textGeometry2.dispose();
+          textMaterial2.dispose();
+        }, 4000);
+
         // Crear un tween que transicione la posición de la cámara
         new TWEEN.Tween(camera.position)
-        .to({ x: -14, y: 11, z: 35 }, 3000) // Transición en 3 segundos
+        .to({ x: -14, y: 11, z: 35 }, 7000) // Transición en 3 segundos
         .easing(TWEEN.Easing.Quadratic.InOut)
-        .onComplete(() => {dialog()})
+        .onComplete(() => { dialog(); })
       .start();
     });
   },
@@ -134,5 +154,64 @@ function dialog(){
             dialog.remove();
           }, { once: true });
       }
+  });
+}
+
+function showIntroText3D(){
+  // Cargar la fuente para generar el texto 3D
+  const loader = new FontLoader();
+  loader.load('fonts/helvetiker_regular.typeface.json', function(font) {
+
+    // Posición en la que se colocarán los textos
+    const posX = 50, posY = 23.5, posZ = 13;
+
+    // Obtener la dirección desde el texto hacia la cámara, proyectada en el plano XZ
+    // Usamos un vector auxiliar para calcular el ángulo
+    const getYRotation = (textPosition) => {
+      // Vector que va desde la posición del texto hasta la cámara
+      const vectorToCamera = new THREE.Vector3().subVectors(camera.position, textPosition);
+      // Proyectar sobre el plano XZ (ignorar componente Y)
+      vectorToCamera.y = 0;
+      // Calcular el ángulo con respecto al eje Z positivo:
+      // Math.atan2(diff.x, diff.z) devuelve el ángulo en radianes
+      return Math.atan2(vectorToCamera.x, vectorToCamera.z) - 0.2 * Math.PI / 2;
+    };
+
+    // Crear el texto "Welcome to" (tamaño pequeño)
+    textGeometry1 = new TextGeometry('Welcome to', {
+      font: font,
+      size: 1,        // Tamaño pequeño
+      height: 0.2,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.02,
+      bevelSize: 0.05,
+      bevelOffset: 0,
+      bevelSegments: 3
+    });
+    textMaterial1 = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    textMesh1 = new THREE.Mesh(textGeometry1, textMaterial1);
+    textMesh1.position.set(posX, posY+3.5, posZ);
+    textMesh1.rotation.y = getYRotation(textMesh1.position);
+    scene.add(textMesh1);
+
+    // Crear el texto "Brian's Island" (tamaño mayor)
+    textGeometry2 = new TextGeometry("Brian's Island", {
+      font: font,
+      size: 2,        // Tamaño mayor
+      height: 0.4,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.04,
+      bevelSize: 0.1,
+      bevelOffset: 0,
+      bevelSegments: 3
+    });
+    textMaterial2 = new THREE.MeshStandardMaterial({ color: 0xff5f00 });
+    textMesh2 = new THREE.Mesh(textGeometry2, textMaterial2);
+    textMesh2.position.set(posX, posY, posZ);
+    textMesh2.rotation.y = getYRotation(textMesh2.position);
+    scene.add(textMesh2);
+    
   });
 }

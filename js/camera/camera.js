@@ -2,7 +2,7 @@ export let camera, cameraControls;
 
 export function iniCamera(renderer){
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-    camera.position.set(62, 36, -5); // quiero una transicion hasta la pos -14,11,35
+    camera.position.set(90, 36, -5); // quiero una transicion hasta la pos -14,11,35
     camera.lookAt(new THREE.Vector3(0, 1, 0));
 
     cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
