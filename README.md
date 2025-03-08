@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="100" alt="Personal Loco" src="https://github.com/brivaro/brivaro.github.io/blob/main/icon2.png">
+  <img height="100" alt="Personal Logo" src="icon2.png">
 </div>
 
 <h1 align="center">
