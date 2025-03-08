@@ -143,7 +143,7 @@ I am a Computer Engineer specializing in Artificial Intelligence and Machine Lea
 ## Contact 📫  
 
 If you’d like to collaborate or learn more about my projects, feel free to reach out:    
-📧 [brian.1613.bv@gmail.com](mailto:brian.1613.bv@gmail.com) • [LinkedIn](https://linkedin.com/in/brian-valiente-rodenas)
+📧 [brian.1613.bv@gmail.com](mailto:brian.1613.bv@gmail.com) • 📱 [LinkedIn](https://linkedin.com/in/brian-valiente-rodenas)
 
 <br>
 
