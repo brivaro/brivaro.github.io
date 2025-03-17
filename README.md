@@ -30,7 +30,7 @@
 
 ---
 
-<div align="center"> ⏩ [My page](http://brivaro.github.io) ⏪ <div/>
+<div align="center"> ⏩ [My page](http://brivaro.github.io) ⏪ </div>
 
 ---
 
