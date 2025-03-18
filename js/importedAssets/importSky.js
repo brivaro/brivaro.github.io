@@ -12,26 +12,12 @@ const paths = {
 };
 
 export function iniSkies(renderer, exrLoader, rgbeLoader) {
-  // Se crea el PMREMGenerator para convertir las texturas EXR
+  // PMREMGenerator para convertir las texturas EXR
   const pmremGenerator = new PMREMGenerator(renderer);
   pmremGenerator.compileEquirectangularShader();
 
-  // Cargar ambas texturas en paralelo
   return Promise.all([
-    // EXR
-    //new Promise((resolve, reject) => {
-    //  exrLoader.load(
-    //    paths.day,
-    //    (texture) => {
-    //      skyEnvironments.day = pmremGenerator.fromEquirectangular(texture).texture;
-    //      texture.dispose();
-    //      resolve();
-    //    },
-    //    undefined,
-    //    reject
-    //  );
-    //}),
-    // Cargar HDR con RGBELoader y generar PMREM
+    // HDR con RGBELoader y generar PMREM
     new Promise((resolve, reject) => {
       rgbeLoader.load( paths.day,
         (texture) => {
@@ -68,3 +54,18 @@ export function updateSky(scene, isNight) {
   scene.background = envMap;  // Fondos para el entorno
   scene.environment = envMap; // Reflejos para el entorno
 }
+
+
+// EXR
+    //new Promise((resolve, reject) => {
+    //  exrLoader.load(
+    //    paths.day,
+    //    (texture) => {
+    //      skyEnvironments.day = pmremGenerator.fromEquirectangular(texture).texture;
+    //      texture.dispose();
+    //      resolve();
+    //    },
+    //    undefined,
+    //    reject
+    //  );
+    //}),
