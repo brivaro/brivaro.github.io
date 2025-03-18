@@ -18,7 +18,6 @@ export const map_pointer_lib = {
 export function iniWuhuIsland(scene, loader){
   loader.load('models/wuhu_island/ISLA.glb', function (gltf) {
     wuhu_island = gltf.scene;
-    //wuhu_island.position.set(0, 0.4, 0);
     wuhu_island.scale.set(0.5, 0.5, 0.5);
     // Guardamos la posición base en Y para la flotación
     wuhu_island.userData.baseY = wuhu_island.position.y + 0.20;
@@ -33,7 +32,6 @@ export function iniWuhuIsland(scene, loader){
     initCubeWithGUI();
 
     loader.load('models/map_pointer/places_of_interest.gltf', function (gltf) {
-      // Guardamos la escena original
       let map_pointer = SkeletonUtils.clone(gltf.scene);
       
       // Una vez cargado, ya podemos iterar sobre "map_pointer_lib"
@@ -55,7 +53,6 @@ export function iniWuhuIsland(scene, loader){
           }
         });
 
-        // Guardamos en el array y añadimos a la escena
         map_pointers.push(pointerClone);
         wuhu_island.add(pointerClone);
       });
@@ -98,9 +95,8 @@ export function iniWuhuIsland(scene, loader){
     });
 
     loader.load('models/mii_animation.glb', function (gltf) {
-      // El modelo 3D
       miiModel = gltf.scene;
-      miiModel.position.set(80, 0.65, 35); //(84, 0.6, 70); 
+      miiModel.position.set(80, 0.65, 35);
       miiModel.scale.set(0.008, 0.008, 0.008);
 
       miiModel.traverse((child) => {
@@ -114,7 +110,7 @@ export function iniWuhuIsland(scene, loader){
       // Crear un AnimationMixer para reproducir la animación
       miiMixer = new THREE.AnimationMixer(miiModel);
   
-      // Tomar la primera animación (si tu archivo GLB tiene varias, ajusta el índice)
+      // Tomar la primera animación del modelo
       const clip = gltf.animations[0];
       if (clip) {
         const action = miiMixer.clipAction(clip);
@@ -123,9 +119,8 @@ export function iniWuhuIsland(scene, loader){
     });
 
     loader.load('models/beach_kit.glb', function (gltf) {
-      // El modelo 3D
       beach_kit = gltf.scene;
-      beach_kit.position.set(85, 0.6, 35); //(84, 0.6, 70); 
+      beach_kit.position.set(85, 0.6, 35);
       beach_kit.rotation.set(0, 5, 0);
       beach_kit.scale.set(0.8, 0.8, 0.8);
 
@@ -148,7 +143,6 @@ export function iniWuhuIsland(scene, loader){
   });   
 }
 
-// Función para crear el cubo y añadirle la interfaz de control
 function initCubeWithGUI() {
     // Crear la geometría y material del cubo
     /*
@@ -246,7 +240,6 @@ function initCubeWithGUI() {
 
     gui.close();
 
-    // Actualizar valores de la GUI en cada frame
     function updateGUI() {
       cameraPos.x = Math.round(camera.position.x);
       cameraPos.y = Math.round(camera.position.y);

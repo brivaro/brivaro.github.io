@@ -239,7 +239,6 @@ function update()
     }
     
     if (mobile) {
-        // Sumamos el desplazamiento a la altura base guardada
         mobile.position.y = mobile.userData.baseY + waveOffset;
     }
 
