@@ -3,6 +3,7 @@
 </div>
 
 <h1 align="center">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Spouting%20Whale.png" alt="Spouting Whale" width="100" height="100" />
   <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=600&height=70&duration=4000&lines=Hello,+I+am+Brian+Valiente+Ródenas;+Computer+engineer+in+IA+and+ML" alt="Typing SVG" />
 </h1>
 
