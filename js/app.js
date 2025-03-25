@@ -346,7 +346,7 @@ function updateSceneMode() {
         if (fireworksManager) {
             fireworksManager.setEnabled(isNight);
     }
-    }, 600);
+    }, 200);
     
 }
 
